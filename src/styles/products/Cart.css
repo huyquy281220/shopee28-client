@@ -1,0 +1,113 @@
+.cart__body {
+    width: 100%;
+    height: auto;
+    padding: 20px 100px 0;
+    background-color: rgb(245, 245, 245);
+}
+.cart-table {
+    width: 1200px;
+}
+.cart-table th,
+.cart-table td {
+    font-size: 1.4rem;
+    text-align: center;
+    border: none;
+}
+.row1 {
+    height: 55px;
+    font-size: 1.4rem;
+    text-transform: capitalize;
+    color: rgb(136, 136, 136);
+    background-color: #fff;
+}
+.row1 th:first-child {
+    width: 500px;
+    text-align: left;
+    color: rgb(0, 0, 0, 0.8);
+}
+.productsCart-check,
+.productCart-check {
+    display: inline-block;
+    margin: 0 20px;
+    transform: scale(1.5);
+}
+.row2 {
+    height: 10px;
+}
+.row3 {
+    width: 100%;
+    height: 120px;
+    background-color: #fff;
+}
+.row3-td {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 120px;
+}
+.productCart-img {
+    width: 80px;
+    height: 80px;
+}
+.productCart-desc {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+.productCart-name {
+    width: calc(100% - 80px);
+    height: 100%;
+    padding: 15px 10px;
+}
+.productCart-name span {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.productCart-img img {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+.productCart-name {
+    font-size: 1.4rem;
+}
+.td-price span,
+.td-money span {
+    display: inline-block;
+    margin-left: 3px;
+}
+.td-money span {
+    font-size: 1.6rem;
+    color: var(--color-primary);
+}
+.td-delete a {
+    text-decoration: none;
+    color: #000;
+}
+.product-quantity {
+    padding: 2px 5px;
+    display: inline-block;
+    width: 50px;
+    height: 32.5px;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.09);
+    outline: none;
+}
+.plus,
+.minus {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.09);
+    cursor: pointer;
+    font-size: 1.4rem;
+}
+/* .plus i,
+.minus i {
+    pointer-events: none;
+} */

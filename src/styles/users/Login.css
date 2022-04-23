@@ -1,0 +1,158 @@
+::placeholder {
+    color: #ccc;
+}
+.login__header {
+    padding: var(--padding-100);
+    width: 100%;
+    height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.login__header-left {
+    display: flex;
+    align-items: center;
+}
+.login__header-logo {
+    width: 123px;
+    height: 40px;
+    margin-right: 15px;
+}
+.login__header span {
+    font-size: 2.4rem;
+}
+.login__header-help {
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: rgb(238, 77, 45);
+}
+.login__body {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 180px;
+    width: 100%;
+    height: 600px;
+    background-image: url("https://cf.shopee.vn/file/f719d5901f18749ac20f97b76dc44a3a");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.login__body-form {
+    padding: 5px 30px;
+    width: 400px;
+    height: 450px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+.title-form {
+    padding: 20px 0;
+    font-size: 2rem;
+    text-transform: capitalize;
+}
+
+#userName,
+#password,
+#email {
+    padding: 8px;
+    margin-bottom: 30px;
+    width: 100%;
+    height: 40px;
+    outline: none;
+    font-size: 1.4rem;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    border-radius: 2px;
+}
+#userName:focus,
+#password:focus,
+#email:focus {
+    border: 1px solid rgba(0, 0, 0);
+}
+.err-mes {
+    padding-bottom: 10px;
+    margin-top: -20px;
+    color: red;
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+.form-btn {
+    margin-bottom: 10px;
+    width: 100%;
+    height: 40px;
+    border: 0;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    background-color: rgb(243, 130, 108);
+    cursor: pointer;
+}
+.login-with {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.login-with a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: rgb(0, 85, 170);
+}
+.line-wrap {
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-transform: uppercase;
+    color: rgb(204, 204, 204);
+}
+.line {
+    width: 140px;
+    height: 1px;
+    background-color: #000;
+}
+.login-wrap {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.fb-login,
+.gg-login,
+.apple-login {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    width: 105px;
+    height: 40px;
+    color: #fff;
+    border: 0;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.fb-login {
+    width: 110px;
+    background-color: rgb(24, 119, 242);
+}
+.gg-login {
+    background-color: rgb(66, 133, 244);
+}
+.apple-login {
+    background-color: #000;
+}
+.icon-login {
+    margin-right: 10px;
+}
+.question-login {
+    margin-top: 20px;
+    font-size: 1.4rem;
+    text-align: center;
+    color: rgb(204, 204, 204);
+}
+.login-link {
+    margin-left: 8px;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--color-primary);
+}

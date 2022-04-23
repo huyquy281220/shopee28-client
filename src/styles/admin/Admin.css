@@ -1,0 +1,75 @@
+.header-dashboard {
+    padding: 0 15px;
+    width: 100%;
+    height: 50px;
+    background-image: linear-gradient(to right, rgb(255, 176, 30), yellow);
+    font-size: 2rem;
+    line-height: 50px;
+}
+.body-dashboard {
+    width: 100vw;
+    display: flex;
+}
+.admin-sidebar {
+    padding: 5px 10px;
+    margin-right: 15px;
+    max-width: 300px;
+    width: 100%;
+    background-color: aqua;
+    font-weight: bold;
+}
+.sidebar-title {
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+    text-align: center;
+}
+.admin-sidebar ul {
+    list-style: none;
+}
+.admin-sidebar ul li {
+    padding-left: 10px;
+    margin: 5px 0;
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.admin-data {
+    margin-right: 5px;
+    padding: 10px 15px;
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: first baseline;
+    flex-wrap: wrap;
+    background-color: #ccc;
+}
+
+.user-data {
+    padding: 0 10px;
+    width: 55%;
+    height: 50px;
+    background-color: #fff;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+.user-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: red;
+}
+.user-desc {
+    margin: 0 10px;
+    font-size: 1.4rem;
+}
+.online {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgb(42, 232, 9);
+}

@@ -1,0 +1,69 @@
+.myAccount__body {
+    padding: 20px 100px 0;
+    max-width: 100%;
+    height: 650px;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(245, 245, 245);
+}
+.myAccount__body-left {
+    width: 180px;
+}
+.myAccount__body-right {
+    width: 990px;
+    background-color: #fff;
+}
+.header-left {
+    padding: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.avatar {
+    margin-right: 15px;
+    height: 100%;
+    font-size: 4rem;
+}
+.name {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #333333;
+}
+.body-left {
+    font-size: 1.4rem;
+    text-transform: capitalize;
+}
+.body-left a {
+    text-decoration: none;
+    color: #000;
+}
+.body-left ul {
+    list-style: none;
+    margin-left: 55px;
+}
+.body-left ul li a {
+    display: inline-block;
+    padding: 6px 0;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.65);
+}
+.body-left ul li a:hover {
+    color: var(--color-primary);
+}
+.account,
+.purchase-order,
+.notify,
+.voucher-repository,
+.shopee-coin {
+    display: flex;
+    align-items: center;
+    /* justify-content: flex-start; */
+    padding: 10px;
+    text-align: left;
+}
+.mr-15 {
+    margin-right: 15px;
+    font-size: 2rem;
+    display: inline-block;
+    width: 20px;
+}
