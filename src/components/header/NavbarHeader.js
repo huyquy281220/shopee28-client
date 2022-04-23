@@ -113,7 +113,7 @@ function NavbarHeader() {
                             <a href="" className="user-avatar navbar__hover">
                                 <i className="fas fa-user"></i>
                                 <span className="username">{user.username}</span>
-                                <div className="user-hover">
+                                <div className="user__hover">
                                     <Link to={`user/account/profile/id=${user._id}`}>
                                         Tài khoản của tôi
                                     </Link>

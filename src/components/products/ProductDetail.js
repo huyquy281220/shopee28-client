@@ -16,7 +16,7 @@ const handleUpdate = (user, data) => {
 function ProductDetail() {
     const { state } = useLocation();
     const navigate = useNavigate();
-    const { user, dispatch } = useContext(UserContext);
+    const { user } = useContext(UserContext);
 
     const handleQuantity = (product) => {
         const updateCart = user.cart;
