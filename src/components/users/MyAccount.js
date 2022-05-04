@@ -2,16 +2,15 @@ import "../../styles/users/MyAccount.css";
 import { NavLink, Routes, Route } from "react-router-dom";
 import UserContext from "../../store/Context";
 import { useContext } from "react";
-import Header from "../header/Header";
-import Profile from "../users/Profile";
-import Payment from "../users/Payment";
+// import Header from "../header/Header";
+// import Profile from "../users/Profile";
+// import Payment from "../users/Payment";
 
 function MyAccount() {
     const { user } = useContext(UserContext);
     let activeStyle = { color: "#ee4d2d" };
     return (
         <div className="myAccount">
-            <Header />
             <div className="myAccount__body">
                 <div className="myAccount__body-left">
                     <div className="header-left">

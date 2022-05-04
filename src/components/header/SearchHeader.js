@@ -38,17 +38,6 @@ function SearchHeader() {
 
     const debounceOnSearch = debounce(handleSearchTermChange, 200);
 
-    // const handleEnter = (e) => {
-    //     const searchItem = e.target.value;
-    //     if (e.key === "Enter") {
-    //         setSearchHistory([...searchHistory,searchItem]);
-    //     }
-    // };
-
-    // const handleClick = (e) => {
-    //     setToggleOn(true);
-    // };
-
     const handleSubmit = (e) => {
         e.preventDefault();
     };
@@ -83,10 +72,8 @@ function SearchHeader() {
                             type="text"
                             className="search__header-input"
                             placeholder="Tìm kiếm sản phẩm"
-                            value={searchTerm}
+                            // value={searchTerm}
                             onChange={debounceOnSearch}
-                            // onKeyPress={handleEnter}
-                            // onFocus={handleClick}
                         />
                         <button className="search__header-btn">
                             <i className="fas fa-search search-btn"></i>

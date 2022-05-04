@@ -2,12 +2,11 @@ import "../../styles/products/Cart.css";
 import { useState, useContext } from "react";
 import UserContext from "../../store/Context";
 import { handleUpdate } from "../products/ProductDetail";
-import numberWithCommas from "../../utils/formatPrice/numberWithCommas"
+import numberWithCommas from "../../utils/formatPrice/numberWithCommas";
 
 function Cart() {
     const { user } = useContext(UserContext);
     const newCart = user.cart;
-    // const productSelected = [];
     const [isCheckedAll, setIsCheckedAll] = useState(false);
     const [newQty, setNewQty] = useState(
         newCart.map((product) => ({
@@ -15,8 +14,6 @@ function Cart() {
             id: product._id,
         }))
     );
-
-    
 
     const handleCheckAll = (e) => {
         const checkbox = document.querySelectorAll(".productCart-check");
@@ -29,11 +26,6 @@ function Cart() {
         const checkboxAll = document.querySelector(".checkAll");
         const checkbox = document.querySelectorAll(".productCart-check:checked");
 
-        console.log(e.target.getAttribute("product-id"));
-        // if (e.target.checked == true) {
-        // }
-
-        // e.target.checked = true;
         if (checkbox.length === newCart.length) {
             checkboxAll.checked = true;
         } else {
@@ -74,7 +66,7 @@ function Cart() {
         });
     };
 
-    const a = newCart.reduce((total, product) => {
+    const totalMoney = newCart.reduce((total, product) => {
         return total + product.price * product.qtySelected;
     }, 0);
 
@@ -162,9 +154,10 @@ function Cart() {
                             ))}
                             <tr className="row2"></tr>
                             <tr>
-                                <td>
-                                    <div>
-                                        Tổng thanh toán (sản phẩm) : {a} <span>VND</span>
+                                <td className="td-payment" colSpan={5}>
+                                    <div className="payment">
+                                        Tổng thanh toán (sản phẩm) : {numberWithCommas(totalMoney)}{" "}
+                                        <span>VND</span>
                                     </div>
                                     <button>Mua Hàng</button>
                                 </td>

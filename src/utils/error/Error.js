@@ -3,6 +3,8 @@ import { useLocation } from "react-router-dom";
 function ErrorPage() {
     const { err } = useLocation();
     const errStyle = {
+        height: "100%",
+        minHeight: "400px",
         textAlign: "center",
         fontSize: "3rem",
         color: "red",

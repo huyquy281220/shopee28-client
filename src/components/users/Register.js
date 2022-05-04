@@ -6,14 +6,15 @@ import axios from "axios";
 import RegisterForm from "../../utils/reactForm/formik";
 
 function Register() {
-    // const [username, setUsername] = useState("");
-    // const [email, setEmail] = useState("");
-    // const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
     const handleSubmit = async (username, email, password) => {
         try {
-            await axios.post(`${process.env.API_URL}/user/register`, { username, email, password });
+            await axios.post(`${process.env.REACT_APP_API_URL}/user/register`, {
+                username,
+                email,
+                password,
+            });
             navigate("/user/login");
         } catch (err) {
             console.log(err);
@@ -45,92 +46,6 @@ function Register() {
             <div className="register__body">
                 <div className="register__body-form">
                     <RegisterForm handleFormSubmit={handleSubmit} type="register" />
-                    {/* <form action="" method="" id="register-form">
-                        <div className="title-form">Đăng ký</div>
-                        <input
-                            type="text"
-                            name="userName"
-                            id="userName"
-                            // ref={usernameRef}
-                            onChange={(e) => setUsername(e.target.value)}
-                            placeholder="Tên đăng nhập"
-                        />
-                        <input
-                            type="password"
-                            name="password"
-                            id="password"
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="Mật khẩu"
-                        />
-                        <input
-                            type="email"
-                            name="email"
-                            id="email"
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="Email"
-                        />
-                        <span className="form-err"></span>
-                        <button
-                            className="form-btn"
-                            // style={{ cursor: cursor }}
-                            onClick={handleSubmit}
-                            // disabled
-                        >
-                            Đăng ký
-                        </button>
-                        <div className="line-wrap">
-                            <div className="line"></div>
-                            <span style={{ fontSize: "1.4rem" }}>Hoặc</span>
-                            <div className="line"></div>
-                        </div>
-                        <div className="login-wrap">
-                            <button className="fb-login">
-                                <i
-                                    className="fab fa-facebook icon-login"
-                                    style={{ fontSize: "2.6rem" }}
-                                ></i>
-                                Facebook
-                            </button>
-                            <button className="gg-login">
-                                <i
-                                    className="fab fa-google icon-login"
-                                    style={{ fontSize: "2.6rem" }}
-                                ></i>
-                                Google
-                            </button>
-                            <button className="apple-login">
-                                <i
-                                    className="fab fa-apple icon-login"
-                                    style={{ fontSize: "2.6rem" }}
-                                ></i>
-                                Apple
-                            </button>
-                        </div>
-                        <div className="form-desc">
-                            Bằng việc đăng kí, bạn đã đồng ý với Shopee về <br />
-                            <a
-                                href="https://shopee.vn/legaldoc/termsOfService/?__classic__=1"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                Điều khoản dịch vụ
-                            </a>{" "}
-                            &{" "}
-                            <a
-                                href="https://shopee.vn/legaldoc/privacy/?__classic__=1"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                Chính sách bảo mật
-                            </a>
-                        </div>
-                        <div className="question-login">
-                            <span>Bạn đã có tài khoản ?</span>
-                            <Link to="/user/login" className="login-link">
-                                Đăng nhập
-                            </Link>
-                        </div>
-                    </form> */}
                 </div>
             </div>
         </div>

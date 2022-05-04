@@ -34,9 +34,12 @@ function FormValidate(props) {
                       .required("Vui lòng nhập email")
                       .test("validate-email", "Email đã tồn tại", async (value) => {
                           try {
-                              const res = await axios.post("/user/validate-email", {
-                                  email: value,
-                              });
+                              const res = await axios.post(
+                                  `${process.env.REACT_APP_API_URL}/user/validate-email`,
+                                  {
+                                      email: value,
+                                  }
+                              );
                               return !(res.data === value);
                           } catch (err) {
                               console.log(err);
@@ -55,13 +58,12 @@ function FormValidate(props) {
             validationSchema={FormSchema}
             validateOnChange={false}
             onSubmit={(values, { setFieldError }) => {
-                console.log("submit");
                 handleFormSubmit(values.userName, values.email, values.password).catch((err) =>
                     setFieldError("password", "Email hoặc mật khẩu không đúng")
                 );
             }}
         >
-            {({ errors, touched, handleSubmit }) => (
+            {({ handleSubmit }) => (
                 <Form onSubmit={handleSubmit}>
                     <div className="title-form">{type === "login" ? "Đăng nhập" : "Đăng ký"}</div>
                     {type === "register" && <Field id="userName" name="userName"></Field>}

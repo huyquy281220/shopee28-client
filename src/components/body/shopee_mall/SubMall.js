@@ -1,4 +1,4 @@
-import {useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 // import UserContext from "../../../store/Context";
 import numberWithCommas from "../../../utils/formatPrice/numberWithCommas";
@@ -9,32 +9,38 @@ function SubMall() {
     const navigate = useNavigate();
 
     useEffect(() => {
+        let isSuccess = true;
         axios
-            .get(`${process.env.REACT_APP_API_URL}/products`)
-            .then((res) => setProducts(res.data))
+            .get(`${process.env.REACT_APP_API_URL}/products?limit=5`)
+            .then((res) => {
+                if (isSuccess) {
+                    setProducts(res.data);
+                }
+            })
             .catch((err) => navigate("/error", { err }));
 
-        return setProducts([]);
+        return () => {
+            isSuccess = false;
+        };
     }, []);
 
     const handleProduct = (e) => {
         // const parent = e.target.parentElement;
         const currentId = e.target.getAttribute("item-id");
-        navigate("/product/details", { state: products[currentId - 1] });
+        navigate(`/product/details/${currentId}`, { state: products[currentId - 1] });
     };
 
     return (
         <div className="subMall">
             <div className="subMall__header">
-                <a href="">Shopee mall</a>
+                <Link to="/mall">Shopee mall</Link>
                 <Link to="/mall">
                     Xem tất cả
                     <i className="fas fa-chevron-right"></i>
                 </Link>
             </div>
-            <div className="subMall__header-content">
-                <div className="subMall__header-slider"></div>
-                <div className="subMall__header-items">
+            <div className="subMall__body-content">
+                <div className="subMall-items">
                     {products.map((product) => (
                         <div
                             className="subMall-item"

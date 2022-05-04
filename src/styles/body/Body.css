@@ -1,5 +1,6 @@
 .container {
     width: 100%;
+    min-height: 1000px;
     padding: 30px 100px 20px 100px;
     background-color: rgb(245, 245, 245);
 }
@@ -38,7 +39,22 @@
     height: 100%;
     object-fit: cover;
 }
+.swiper-button-prev,
+.swiper-button-next {
+    background-color: rgba(0, 0, 0, 0.18);
+}
 
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+    background-color: rgba(0, 0, 0, 0.32);
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+    color: #fff !important;
+    font-weight: 900;
+    font-size: 2.4rem !important;
+}
 .mySwiper {
     max-width: 797px;
     width: 100%;
@@ -156,13 +172,19 @@
 } */
 
 /* shopee mall  */
-.subMall {
+.subMall,
+.products-today {
+    margin-bottom: 20px;
     max-width: 1200px;
     width: 100%;
-    max-height: 400px;
+    min-height: 400px;
     background-color: #fff;
 }
-.subMall__header {
+.products-today {
+    height: auto !important;
+}
+.subMall__header,
+.suggest__header {
     padding: 0 20px;
     height: 60px;
     display: flex;
@@ -170,34 +192,46 @@
     justify-content: space-between;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
-.subMall__header a {
+.suggest__body-content {
+    background-color: rgb(245, 245, 245);
+}
+.subMall__header a,
+.suggest__header a {
     text-decoration: none;
     font-size: 1.7rem;
     font-weight: 500;
     color: rgb(217, 52, 73);
 }
-.subMall__header a:first-child {
+.subMall__header a:first-child,
+.suggest__header a {
     text-transform: uppercase;
 }
 .subMall__header .fa-chevron-right {
     margin-left: 5px;
 }
-
-.subMall__header-items,
+.today-items {
+    height: 100%;
+    min-height: 400px;
+}
+.subMall-items,
+.today-items,
 .mall-items {
     padding: 5px;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 46px;
     flex-wrap: wrap;
 }
 .subMall-item,
+.today-item,
 .mall-item {
     position: relative;
-    padding: 5px 5px 0 5px;
+    padding: 5px 5px 0;
     margin-bottom: 10px;
-    width: 20rem;
+    width: 16.6667%;
     height: 29rem;
+    background-color: #fff;
     cursor: pointer;
 }
 .mall-item {
@@ -241,4 +275,47 @@
 }
 .mall-body {
     margin-top: 20px;
+}
+.btn-light {
+    width: 30rem;
+    height: 4rem;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.09);
+    font-size: 1.4rem;
+    color: #555;
+    background-color: #fff;
+    outline: 0;
+    cursor: pointer;
+}
+.btn-light:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+/* skeleton loading  */
+.skeleton-box {
+    position: relative;
+    overflow: hidden;
+    background-color: #dddbdd;
+}
+.skeleton-box:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background-image: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0,
+        rgba(255, 255, 255, 0.2) 20%,
+        rgba(255, 255, 255, 0.5) 60%,
+        rgba(255, 255, 255, 0)
+    );
+    animation: loading 1.5s ease infinite;
+}
+
+@keyframes loading {
+    100% {
+        transform: translateX(100%);
+    }
 }

@@ -5,10 +5,19 @@ function Category() {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
+        let isSuccess = true;
         axios
             .get(`${process.env.REACT_APP_API_URL}/category`)
-            .then((res) => setCategories(res.data))
+            .then((res) => {
+                if (isSuccess) {
+                    setCategories(res.data);
+                }
+            })
             .catch((err) => console.log(err));
+
+        return () => {
+            isSuccess = false;
+        };
     }, []);
 
     return (

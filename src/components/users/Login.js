@@ -1,33 +1,33 @@
 import "../../styles/users/Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useContext} from "react";
+import { useContext } from "react";
 import UserContext from "../../store/Context";
 import { loginStart, loginSuccess, loginFailure } from "../../store/Actions";
 import LoginForm from "../../utils/reactForm/formik";
 
 function Login() {
-    // const [email, setEmail] = useState("");
-    // const [password, setPassword] = useState("");
     const { dispatch } = useContext(UserContext);
     const navigate = useNavigate();
 
     const handleLogin = async (username, email, password) => {
         dispatch(loginStart());
         try {
-            const res = await axios.post(`${process.env.REACT_APP_API_URL}/user/login`, { email, password });
+            const res = await axios.post(`${process.env.REACT_APP_API_URL}/user/login`, {
+                email,
+                password,
+            });
             dispatch(loginSuccess(res.data));
-            console.log(navigate(-1));
-            if (res.data.isAdmin === true) {
-                navigate("/admin");
-            } else if (
-                navigate(-1) === navigate("/") ||
-                navigate(-1) === navigate("/user/register")
-            ) {
-                navigate("/");
-            } else {
-                navigate(-1);
-            }
+            console.log(
+                navigate(-1) === navigate("/") || navigate(-1) === navigate("/user/register")
+            );
+            setTimeout(() => {
+                if (navigate(-1) === navigate("/") || navigate(-1) === navigate("/user/register")) {
+                    return navigate("/");
+                } else {
+                    return navigate(-1);
+                }
+            }, 1000);
         } catch (err) {
             dispatch(loginFailure());
             return new Promise((resolve, reject) => {

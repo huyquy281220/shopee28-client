@@ -14,7 +14,6 @@ function Provider({ children }) {
             value={{
                 user: state.user,
                 isFetching: state.isFetching,
-                error: state.error,
                 dispatch,
             }}
         >

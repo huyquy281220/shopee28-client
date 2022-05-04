@@ -3,17 +3,27 @@ import shopeeQR from "../../assets/img/mainImg/QRcode/shopeeQR.png";
 import appleQR from "../../assets/img/mainImg/QRcode/appleQR.png";
 import googleQR from "../../assets/img/mainImg/QRcode/googleQR.png";
 import galleryQR from "../../assets/img/mainImg/QRcode/galleryQR.png";
-import { useContext, memo } from "react";
+import { useState, useEffect, useContext, memo } from "react";
 import UserContext from "../../store/Context";
 import { logout } from "../../store/Actions";
 import axios from "axios";
 
 function NavbarHeader() {
     const { user, dispatch } = useContext(UserContext);
+    const [hoverNotify, setHoverNotify] = useState(false);
+    const [notifyList, setNotifyList] = useState([]);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        axios
+            .get(`${process.env.REACT_APP_API_URL}/notify?limit=5`)
+            .then((res) => setNotifyList(res.data))
+            .catch((err) => console.log(err));
+    }, []);
+
     const handleLogout = () => {
         axios
-            .post("/user/logout", { _id: user._id })
+            .post(`${process.env.REACT_APP_API_URL}/user/logout`, { _id: user._id })
             .then(() => {
                 dispatch(logout());
                 navigate("/");
@@ -25,22 +35,22 @@ function NavbarHeader() {
         <div className="navbar__header">
             <div className="navbar__headerLeft">
                 <div className="navbar__list">
-                    <a
-                        href="https://banhang.shopee.vn/"
+                    <Link
+                        to="https://banhang.shopee.vn/"
                         rel="noreferrer"
                         target="_blank"
                         className="navbar__hover separate-item"
                     >
                         Kênh người bán
-                    </a>
-                    <a
-                        href="https://shopee.vn/m/sell-on-shopee"
+                    </Link>
+                    <Link
+                        to="https://shopee.vn/m/sell-on-shopee"
                         className="navbar__hover separate-item "
                     >
                         Trở thành người bán shopee
-                    </a>
-                    <a
-                        href="https://shopee.vn/web"
+                    </Link>
+                    <Link
+                        to="https://shopee.vn/web"
                         target="_blank"
                         rel="noreferrer"
                         className="navbar__hover separate-item qr__hover"
@@ -62,8 +72,8 @@ function NavbarHeader() {
                                 </a>
                             </div>
                         </div>
-                    </a>
-                    <a href="#">
+                    </Link>
+                    <Link to="#">
                         Kết nối
                         <a
                             href="https://www.facebook.com/ShopeeVN"
@@ -79,38 +89,65 @@ function NavbarHeader() {
                         >
                             <i className="fab fa-instagram"></i>
                         </a>
-                    </a>
+                    </Link>
                 </div>
             </div>
             <div className="navbar__headerRight">
                 <div className="navbar__list">
-                    <a href="" className="navbar__hover">
+                    <Link
+                        to=""
+                        className="navbar__hover notify-header"
+                        onMouseEnter={() => setHoverNotify(true)}
+                        onMouseLeave={() => setHoverNotify(false)}
+                    >
                         <i className="far fa-bell mr-right"></i>
                         Thông báo
-                    </a>
-                    <div className="notify__hover">
-                        <ul className="notify-list">
-                            <li className="notify-list-item"></li>
-                        </ul>
-                        <button className="all-notify">Xem tất cả</button>
-                    </div>
-                    <a
-                        href="https://help.shopee.vn/vn/s/"
+                        {hoverNotify && (
+                            <div className="notify__hover">
+                                <div className="notify-title">Thông báo mới nhận</div>
+                                <ul className="notify-list">
+                                    {notifyList.map((item, key) => (
+                                        <li className="notify-list-item" key={key}>
+                                            <Link to="">
+                                                <img
+                                                    src={item.image}
+                                                    alt=""
+                                                    width="35px"
+                                                    height="35px"
+                                                />
+                                                <div className="notify-body">
+                                                    <div className="notify-name">{item.title}</div>
+                                                    <div className="notify-content">
+                                                        {item.content}
+                                                    </div>
+                                                </div>
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                                <Link to="" className="all-notify">
+                                    Xem tất cả
+                                </Link>
+                            </div>
+                        )}
+                    </Link>
+                    <Link
+                        to="https://help.shopee.vn/vn/s/"
                         target="_blank"
                         rel="noreferrer"
                         className="navbar__hover"
                     >
                         <i className="far fa-question-circle mr-right"></i>
                         Hỗ trợ
-                    </a>
-                    <a href="" className="navbar__hover">
+                    </Link>
+                    <Link to="" className="navbar__hover">
                         <i className="far fa-question-circle mr-right"></i>
                         Tiếng việt
                         <i className="fas fa-chevron-down mr-left"></i>
-                    </a>
+                    </Link>
                     {user ? (
                         <>
-                            <a href="" className="user-avatar navbar__hover">
+                            <Link to="" className="user-avatar navbar__hover">
                                 <i className="fas fa-user"></i>
                                 <span className="username">{user.username}</span>
                                 <div className="user__hover">
@@ -121,7 +158,7 @@ function NavbarHeader() {
                                         Đăng xuất
                                     </Link>
                                 </div>
-                            </a>
+                            </Link>
                         </>
                     ) : (
                         <>

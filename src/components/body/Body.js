@@ -1,6 +1,7 @@
 import Banner from "./banner/Banner";
 import Category from "./category/Category";
 import SubMall from "./shopee_mall/SubMall";
+import TodaySuggestion from "./today/Today";
 import "../../styles/body/Body.css";
 
 function Body() {
@@ -9,6 +10,7 @@ function Body() {
             <Banner />
             <Category />
             <SubMall />
+            <TodaySuggestion />
         </div>
     );
 }
