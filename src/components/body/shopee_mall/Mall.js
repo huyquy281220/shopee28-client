@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import queryString from "query-string";
-import  numberWithCommas  from "../../../utils/formatPrice/numberWithCommas";
+import numberWithCommas from "utils/formatPrice/numberWithCommas";
 import Pagination from "./MallPagination";
 
 function Mall() {
@@ -84,5 +84,3 @@ function Mall() {
 }
 
 export default Mall;
-
-

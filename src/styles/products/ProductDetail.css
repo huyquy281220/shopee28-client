@@ -46,20 +46,23 @@
     font-size: 2rem;
 }
 .product-price {
-    padding: 15px 20px;
+    padding: 15px 30px;
+    position: relative;
     display: flex;
     align-items: center;
     width: 100%;
     height: 65px;
-    font-size: 3rem;
+    font-size: 3.5rem;
     background-color: rgb(245, 245, 245);
     color: var(--color-primary);
 }
-.product-price span {
-    display: inline-block;
-    margin-right: 3px;
-    font-size: 2rem;
+.currency-unit {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 2.3rem;
 }
+
 .transport {
     height: 50px;
     margin: 25px 0;
@@ -83,9 +86,16 @@
 .product-qty-left {
     width: 110px;
 }
+.product-qty-right {
+    display: flex;
+    align-items: center;
+}
+.product-available {
+    margin-left: 20px;
+}
 .product-buy {
     margin-top: 100px;
-    text-align: right;
+    text-align: left;
 }
 .add,
 .buy {
@@ -125,4 +135,5 @@
     color: #fff;
     background-color: #000;
     opacity: 0.9;
+    z-index: 10;
 }

@@ -1,13 +1,12 @@
 import "../../styles/products/Cart.css";
 import { useState, useContext } from "react";
-import UserContext from "../../store/Context";
+import UserContext from "store/Context";
 import { handleUpdate } from "../products/ProductDetail";
-import numberWithCommas from "../../utils/formatPrice/numberWithCommas";
+import numberWithCommas from "utils/formatPrice/numberWithCommas";
 
 function Cart() {
     const { user } = useContext(UserContext);
     const newCart = user.cart;
-    const [isCheckedAll, setIsCheckedAll] = useState(false);
     const [newQty, setNewQty] = useState(
         newCart.map((product) => ({
             qty: product.qtySelected,
@@ -42,10 +41,9 @@ function Cart() {
         });
     };
 
-    const handlePlus = (e) => {
-        const a = e.target.getAttribute("product-id");
+    const handlePlus = (id) => {
         newCart.forEach((product) => {
-            if (product._id == a) {
+            if (product._id === id) {
                 product.qtySelected++;
                 handleQty(product.qtySelected, product._id);
                 handleUpdate(user, user.cart);
@@ -54,10 +52,9 @@ function Cart() {
         });
     };
 
-    const handleMinus = (e) => {
-        const a = e.target.getAttribute("product-id");
+    const handleMinus = (id) => {
         newCart.forEach((product) => {
-            if (product._id == a && product.qtySelected > 0) {
+            if (product._id === id && product.qtySelected > 0) {
                 product.qtySelected--;
                 handleQty(product.qtySelected, product._id);
                 handleUpdate(user, user.cart);
@@ -81,7 +78,6 @@ function Cart() {
                                     <input
                                         type="checkbox"
                                         className="productsCart-check checkAll"
-                                        defaultChecked={isCheckedAll}
                                         onChange={(e) => handleCheckAll(e)}
                                     />
                                     Sản phẩm
@@ -118,25 +114,25 @@ function Cart() {
                                         <span>VND</span>
                                     </td>
                                     <td className="td-quantity">
-                                        <button
-                                            className="minus"
-                                            product-id={product._id}
-                                            onClick={handleMinus}
-                                        >
-                                            <i className="fas fa-minus"></i>
-                                        </button>
-                                        <input
-                                            type="text"
-                                            className="product-quantity"
-                                            value={product.qtySelected}
-                                        />
-                                        <button
-                                            className="plus"
-                                            product-id={product._id}
-                                            onClick={handlePlus}
-                                        >
-                                            <i className="fas fa-plus"></i>
-                                        </button>
+                                        <div style={{ height: "32.5px" }}>
+                                            <button
+                                                className="minus"
+                                                onClick={() => handleMinus(product._id)}
+                                            >
+                                                <i className="fas fa-minus"></i>
+                                            </button>
+                                            <input
+                                                type="text"
+                                                className="product-quantity"
+                                                defaultValue={product.qtySelected}
+                                            />
+                                            <button
+                                                className="plus"
+                                                onClick={() => handlePlus(product._id)}
+                                            >
+                                                <i className="fas fa-plus"></i>
+                                            </button>
+                                        </div>
                                     </td>
                                     <td className="td-money">
                                         <span

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 // import UserContext from "../../../store/Context";
-import numberWithCommas from "../../../utils/formatPrice/numberWithCommas";
+import numberWithCommas from "utils/formatPrice/numberWithCommas";
 import axios from "axios";
 
 function SubMall() {
@@ -24,10 +24,8 @@ function SubMall() {
         };
     }, []);
 
-    const handleProduct = (e) => {
-        // const parent = e.target.parentElement;
-        const currentId = e.target.getAttribute("item-id");
-        navigate(`/product/details/${currentId}`, { state: products[currentId - 1] });
+    const handleProduct = (id) => {
+        navigate(`/product/details/${id}`, { state: products[id - 1] });
     };
 
     return (
@@ -44,17 +42,15 @@ function SubMall() {
                     {products.map((product) => (
                         <div
                             className="subMall-item"
-                            item-id={product._id}
-                            onClick={handleProduct}
+                            onClick={() => handleProduct(product._id)}
                             key={product._id}
+                            style={{ border: "1px solid #ccc" }}
                         >
-                            <div className="item-image" item-id={product._id}>
-                                <img src={product.image} alt="" item-id={product._id} />
+                            <div className="item-image">
+                                <img src={product.image} alt={product.desc} />
                             </div>
-                            <div className="item-desc" item-id={product._id}>
-                                {product.desc}
-                            </div>
-                            <div className="item-price" item-id={product._id}>
+                            <div className="item-desc">{product.desc}</div>
+                            <div className="item-price">
                                 <span>₫</span>
                                 {numberWithCommas(product.price)}
                             </div>

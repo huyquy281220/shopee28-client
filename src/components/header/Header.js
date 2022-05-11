@@ -1,6 +1,7 @@
+import "../../styles/header/Header.css";
+
 import NavbarHeader from "./NavbarHeader";
 import SearchHeader from "./SearchHeader";
-import "../../styles/header/Header.css";
 // import { memo } from "react";
 
 function Header() {

@@ -1,49 +1,59 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import UserContext from "store/Context";
 import debounce from "lodash.debounce";
+import numberWithCommas from "utils/formatPrice/numberWithCommas";
 import axios from "axios";
 
-function HandleHistorySearch(props) {
-    const { history } = props;
-
-    return (
-        <div className="search-list">
-            <ul className="search-items">
-                {history.map((item, index) => (
-                    <li className="search-item" key={index}>
-                        {item}
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
-}
-
 function SearchHeader() {
+    const { user } = useContext(UserContext);
     const [searchTerm, setSearchTerm] = useState("");
     const [searchHistory, setSearchHistory] = useState([]);
     const [itemOnSearch, setItemOnSearch] = useState([]);
     const [toggleOn, setToggleOn] = useState(false);
     const navigate = useNavigate();
 
+    console.log(itemOnSearch);
+    console.log(typeof itemOnSearch);
     const handleSearchTermChange = (e) => {
         const searchItem = e.target.value;
-        setToggleOn(true);
+        // setToggleOn(true);
         setSearchTerm(e.target.value);
         axios
             .get(`${process.env.REACT_APP_API_URL}/search?s=${searchItem}`)
-            .then((res) => setItemOnSearch(res.data))
+            .then((res) => {
+                setItemOnSearch(res.data.products);
+            })
             .catch((err) => navigate("/error", { err }));
     };
 
-    const debounceOnSearch = debounce(handleSearchTermChange, 200);
+    const debounceOnSearch = debounce(handleSearchTermChange, 500);
+
+    const HandleHistorySearch = (props) => {
+        const { history } = props;
+
+        return (
+            <div className="search-list">
+                <ul className="search-items">
+                    {history.map((item, index) => (
+                        <li className="search-item" key={index}>
+                            <Link
+                                to={`/product/details/${item._id}`}
+                                state={item}
+                                className="text-search"
+                            >
+                                <img src={item.image} alt="" width="35px" height="35px" />
+                                <div className="notify-name">{item.name}</div>
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        );
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-    };
-
-    const handleClickOutSide = () => {
-        setToggleOn(false);
     };
 
     return (
@@ -66,21 +76,22 @@ function SearchHeader() {
                         className="searchForm"
                         action=""
                         onSubmit={handleSubmit}
-                        onBlur={handleClickOutSide}
+                        onBlur={() => setToggleOn(false)}
                     >
                         <input
                             type="text"
                             className="search__header-input"
                             placeholder="Tìm kiếm sản phẩm"
-                            // value={searchTerm}
+                            defaultValue=""
+                            // onClick={()=> setToggleOn(true)}
                             onChange={debounceOnSearch}
                         />
                         <button className="search__header-btn">
                             <i className="fas fa-search search-btn"></i>
                         </button>
                     </form>
-                    {}
-                    {toggleOn && searchHistory.length > 0 ? (
+
+                    {itemOnSearch.length > 0 ? (
                         <HandleHistorySearch history={itemOnSearch} />
                     ) : null}
                 </div>
@@ -97,7 +108,50 @@ function SearchHeader() {
             </div>
             <div className="search__header-cart">
                 <Link to="/user/cart" className="cart-icon">
+                    <div className="items-in-cart">{user.cart.length}</div>
                     <i className="fas fa-shopping-cart"></i>
+                    <div className="notify-cart">
+                        <div className="notify-title" style={{ fontSize: "1.4rem" }}>
+                            Sản phẩm mới thêm
+                        </div>
+                        <ul className="notify-list">
+                            {user.cart
+                                .map((item, key) => (
+                                    <li
+                                        className="notify-list-item"
+                                        style={{ padding: "0 7px" }}
+                                        key={key}
+                                    >
+                                        <Link to={`/product/details/${item._id}`} state={item}>
+                                            <img
+                                                src={item.image}
+                                                alt=""
+                                                width="35px"
+                                                height="35px"
+                                            />
+                                            <div className="notify-body">
+                                                <div className="notify-name">{item.name}</div>
+                                                <div
+                                                    className="notify-price"
+                                                    style={{
+                                                        color: "#ee4d2d",
+                                                        lineHeight: "2.5",
+                                                        fontSize: "1.2rem",
+                                                    }}
+                                                >
+                                                    {numberWithCommas(item.price)} VND
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    </li>
+                                ))
+                                .reverse()
+                                .slice(0, 5)}
+                        </ul>
+                        <Link to="" className="all-notify">
+                            Xem giỏ hàng
+                        </Link>
+                    </div>
                 </Link>
             </div>
         </div>

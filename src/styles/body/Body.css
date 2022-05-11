@@ -216,7 +216,7 @@
 .subMall-items,
 .today-items,
 .mall-items {
-    padding: 5px;
+    padding: 15px 5px 0;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -270,6 +270,11 @@
     font-size: 1rem;
 }
 
+.item-scale:hover {
+    border: 1px solid var(--color-primary);
+    transform: scale(1.03);
+}
+
 .mall-wrapper {
     padding: 20px 100px;
 }
@@ -294,6 +299,9 @@
 .skeleton-box {
     position: relative;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #dddbdd;
 }
 .skeleton-box:after {

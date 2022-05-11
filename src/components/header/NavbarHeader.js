@@ -4,13 +4,12 @@ import appleQR from "../../assets/img/mainImg/QRcode/appleQR.png";
 import googleQR from "../../assets/img/mainImg/QRcode/googleQR.png";
 import galleryQR from "../../assets/img/mainImg/QRcode/galleryQR.png";
 import { useState, useEffect, useContext, memo } from "react";
-import UserContext from "../../store/Context";
-import { logout } from "../../store/Actions";
+import UserContext from "store/Context";
+import { logout } from "store/Actions";
 import axios from "axios";
 
 function NavbarHeader() {
     const { user, dispatch } = useContext(UserContext);
-    const [hoverNotify, setHoverNotify] = useState(false);
     const [notifyList, setNotifyList] = useState([]);
     const navigate = useNavigate();
 
@@ -97,39 +96,33 @@ function NavbarHeader() {
                     <Link
                         to=""
                         className="navbar__hover notify-header"
-                        onMouseEnter={() => setHoverNotify(true)}
-                        onMouseLeave={() => setHoverNotify(false)}
                     >
                         <i className="far fa-bell mr-right"></i>
                         Thông báo
-                        {hoverNotify && (
-                            <div className="notify__hover">
-                                <div className="notify-title">Thông báo mới nhận</div>
-                                <ul className="notify-list">
-                                    {notifyList.map((item, key) => (
-                                        <li className="notify-list-item" key={key}>
-                                            <Link to="">
-                                                <img
-                                                    src={item.image}
-                                                    alt=""
-                                                    width="35px"
-                                                    height="35px"
-                                                />
-                                                <div className="notify-body">
-                                                    <div className="notify-name">{item.title}</div>
-                                                    <div className="notify-content">
-                                                        {item.content}
-                                                    </div>
-                                                </div>
-                                            </Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                                <Link to="" className="all-notify">
-                                    Xem tất cả
-                                </Link>
-                            </div>
-                        )}
+                        <div className="notify__hover">
+                            <div className="notify-title">Thông báo mới nhận</div>
+                            <ul className="notify-list">
+                                {notifyList.map((item, key) => (
+                                    <li className="notify-list-item" key={key}>
+                                        <Link to="">
+                                            <img
+                                                src={item.image}
+                                                alt=""
+                                                width="35px"
+                                                height="35px"
+                                            />
+                                            <div className="notify-body">
+                                                <div className="notify-name">{item.title}</div>
+                                                <div className="notify-content">{item.content}</div>
+                                            </div>
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                            <Link to="" className="all-notify">
+                                Xem tất cả
+                            </Link>
+                        </div>
                     </Link>
                     <Link
                         to="https://help.shopee.vn/vn/s/"

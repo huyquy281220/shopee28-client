@@ -5,15 +5,6 @@ const axiosJWT = axios.create({ withCredentials: true });
 
 axiosJWT.interceptors.request.use(
     (config) => {
-        //config header
-        // config.headers = {
-        //     "Access-Control-Allow-Origin": "*",
-        //     "Access-Control-Allow-Methods": "*",
-        //     "Access-Control-Allow-Headers": "*",
-        //     "Accept": "application/json",
-        //     "Content-Type": "application/json",
-        // };
-
         const user = JSON.parse(localStorage.getItem("user"));
         const date = new Date();
         const decodeToken = jwt_decode(user.accessTokenAuth);
@@ -28,6 +19,15 @@ axiosJWT.interceptors.request.use(
                 .catch((err) => console.error("error" + err));
         }
         return config;
+    },
+    (err) => {
+        return Promise.reject(err);
+    }
+);
+
+axiosJWT.interceptors.response.use(
+    (response) => {
+        return response;
     },
     (err) => {
         return Promise.reject(err);

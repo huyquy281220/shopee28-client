@@ -2,20 +2,20 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 
 //
-import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
-import Body from "./components/body/Body";
-import Register from "./components/users/Register";
-import Login from "./components/users/Login";
-import Admin from "./components/admin/Admin";
+import Header from "components/header/Header";
+import Footer from "components/footer/Footer";
+import Body from "components/body/Body";
+import Register from "components/users/Register";
+import Login from "components/users/Login";
+import Admin from "components/admin/Admin";
 //
-import MyAccount from "./components/users/MyAccount";
-import Cart from "./components/products/Cart";
-import Mall from "./components/body/shopee_mall/Mall";
+import MyAccount from "components/users/MyAccount";
+import Cart from "components/products/Cart";
+import Mall from "components/body/shopee_mall/Mall";
 // import Notify from "./components/"
-import ErrorPage from "./utils/error/Error";
-import ProductDetail from "./components/products/ProductDetail";
-import PrivateRoute from "./components/users/PrivateRoute";
+import ErrorPage from "utils/error/Error";
+import ProductDetail from "components/products/ProductDetail";
+import PrivateRoute from "components/users/PrivateRoute";
 //
 
 function App() {
