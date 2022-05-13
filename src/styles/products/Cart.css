@@ -114,10 +114,12 @@
 } */
 
 .td-payment {
+    padding-right: 40px;
     text-align: right !important;
 }
 .payment {
     width: 100%;
+    margin-bottom: 20px;
 }
 .payment span {
     color: var(--color-primary);

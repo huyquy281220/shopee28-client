@@ -2,20 +2,20 @@ import "styles/products/ProductDetail.css";
 
 import { useContext, useState, useRef } from "react";
 import UserContext from "store/Context";
+import { updateUser } from "store/Actions";
 import { useLocation, useNavigate } from "react-router-dom";
 import numberWithCommas from "utils/formatPrice/numberWithCommas";
 import axios from "axios";
 // import axiosJWT from "../../utils/RefreshToken/refreshToken";
 
 const handleUpdate = (userId, data) => {
-    console.log(data);
     axios.put(`${process.env.REACT_APP_API_URL}/user/${userId}`, { cart: data });
 };
 
 function ProductDetail() {
     const { state } = useLocation();
     const navigate = useNavigate();
-    const { user } = useContext(UserContext);
+    const { user, dispatch } = useContext(UserContext);
     const [addToCart, setAddToCart] = useState(false);
     const currentValue = useRef("");
 
@@ -34,14 +34,17 @@ function ProductDetail() {
     };
 
     const handleAddToCart = () => {
+        const type = "add";
         setAddToCart(true);
         setTimeout(() => {
-            handleBuy();
+            handleBuy(type);
+            dispatch(updateUser(user));
             setAddToCart(false);
         }, 2000);
     };
 
     const handleBuy = (type) => {
+        console.log(type);
         const qtyBuy = currentValue.current.defaultValue;
         if (user) {
             axios
@@ -51,13 +54,18 @@ function ProductDetail() {
                 })
                 .catch((err) => navigate("/error", { error: err }));
 
-            localStorage.setItem("user", JSON.stringify(user));
-            handleUpdate(user._id, user.cart);
-            setTimeout(() => navigate("/user/cart"), 1500);
+            setTimeout(() => {
+                localStorage.setItem("user", JSON.stringify(user));
+                handleUpdate(user._id, user.cart);
+                dispatch(updateUser(user));
+                type !== "add" && navigate("/user/cart");
+            }, 1500);
         } else {
             setTimeout(() => navigate("/user/login"), 1500);
         }
     };
+
+    const handleChangeValue = () => {};
 
     return (
         <div className="productDetail-wrapper">
@@ -125,7 +133,8 @@ function ProductDetail() {
                                 <input
                                     type="text"
                                     ref={currentValue}
-                                    defaultValue="1"
+                                    value="1"
+                                    onChange={handleChangeValue}
                                     className="product-quantity"
                                 />
                                 <button className="plus">

@@ -25,6 +25,10 @@ export default function reducer(state, action) {
                 user: null,
                 isFetching: false,
             };
+        case "UPDATE_USER":
+            return {
+                user: action.payload,
+            };
         default:
             return { ...state };
     }

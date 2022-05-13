@@ -1,11 +1,12 @@
 import "../../styles/products/Cart.css";
 import { useState, useContext } from "react";
 import UserContext from "store/Context";
+import { updateUser } from "store/Actions";
 import { handleUpdate } from "../products/ProductDetail";
 import numberWithCommas from "utils/formatPrice/numberWithCommas";
 
 function Cart() {
-    const { user } = useContext(UserContext);
+    const { user, dispatch } = useContext(UserContext);
     const newCart = user.cart;
     const [newQty, setNewQty] = useState(
         newCart.map((product) => ({
@@ -21,7 +22,7 @@ function Cart() {
         });
     };
 
-    const handleChecked = (e) => {
+    const handleChecked = () => {
         const checkboxAll = document.querySelector(".checkAll");
         const checkbox = document.querySelectorAll(".productCart-check:checked");
 
@@ -61,6 +62,15 @@ function Cart() {
                 localStorage.setItem("user", JSON.stringify(user));
             }
         });
+    };
+
+    const handleDelete = (id) => {
+        const indexDelete = user.cart.findIndex((item) => item._id === id);
+        user.cart.splice(indexDelete, 1);
+
+        dispatch(updateUser(user));
+        localStorage.setItem("user", JSON.stringify(user));
+        handleUpdate(user._id, user.cart);
     };
 
     const handleChangeQty = () => {};
@@ -147,7 +157,12 @@ function Cart() {
                                         <span>VND</span>
                                     </td>
                                     <td className="td-delete">
-                                        <a href="">Xóa</a>
+                                        <span
+                                            style={{ cursor: "pointer" }}
+                                            onClick={() => handleDelete(product._id)}
+                                        >
+                                            Xóa
+                                        </span>
                                     </td>
                                 </tr>
                             ))}
@@ -170,6 +185,7 @@ function Cart() {
                                             color: "#fff",
                                             backgroundColor: "rgb(238, 77, 45)",
                                             borderRadius: "4px",
+                                            cursor: "pointer",
                                         }}
                                     >
                                         Mua Hàng

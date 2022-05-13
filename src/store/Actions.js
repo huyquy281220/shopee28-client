@@ -15,6 +15,9 @@ export const logout = () => ({
     type: "LOGOUT",
 });
 
-
+export const updateUser = (user) => ({
+    type: "UPDATE_USER",
+    payload: user,
+});
 
 //refresh token

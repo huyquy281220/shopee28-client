@@ -1,7 +1,7 @@
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 
 function ErrorPage() {
-    const { err } = useLocation();
+    // const { err } = useLocation();
     const errStyle = {
         height: "100%",
         minHeight: "400px",
@@ -13,7 +13,7 @@ function ErrorPage() {
     return (
         <div className="errPage">
             <div style={errStyle}>
-                <p>{err || "Something went wrong !!!"}</p>
+                <p>"Something went wrong !!!"</p>
             </div>
         </div>
     );

@@ -69,7 +69,6 @@ function SearchHeader() {
                     <form
                         className="searchForm"
                         action=""
-                        // onSubmit={handleSubmit}
                         onBlur={() => setToggleOn(false)}
                     >
                         <input
@@ -77,7 +76,7 @@ function SearchHeader() {
                             className="search__header-input"
                             placeholder="Tìm kiếm sản phẩm"
                             defaultValue=""
-                            // onClick={()=> setToggleOn(true)}
+                            onFocus={() => setToggleOn(true)}
                             onChange={debounceOnSearch}
                         />
                         <button className="search__header-btn">
@@ -85,7 +84,7 @@ function SearchHeader() {
                         </button>
                     </form>
 
-                    {itemOnSearch.length > 0 ? (
+                    {toggleOn && itemOnSearch.length > 0 ? (
                         <HandleHistorySearch history={itemOnSearch} />
                     ) : null}
                 </div>
@@ -102,7 +101,9 @@ function SearchHeader() {
             </div>
             <div className="search__header-cart">
                 <Link to="/user/cart" className="cart-icon">
-                    <div className="items-in-cart">{user ? user.cart.length : null}</div>
+                    {user && user.cart.length > 0 ? (
+                        <div className="items-in-cart">{user.cart.length}</div>
+                    ) : null}
                     <i className="fas fa-shopping-cart"></i>
                     <div className="notify-cart">
                         {user?.cart?.length > 0 ? (
