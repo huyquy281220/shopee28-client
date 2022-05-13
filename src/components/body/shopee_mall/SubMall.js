@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-// import UserContext from "../../../store/Context";
 import numberWithCommas from "utils/formatPrice/numberWithCommas";
 import axios from "axios";
+
+import Sticker from "assets/img/sticker/sticker_top.png";
 
 function SubMall() {
     const [products, setProducts] = useState([]);
@@ -46,6 +47,13 @@ function SubMall() {
                             key={product._id}
                             style={{ border: "1px solid #ccc" }}
                         >
+                            <img
+                                src={Sticker}
+                                alt=""
+                                width="32px"
+                                height="40px"
+                                className="sticker-top"
+                            />
                             <div className="item-image">
                                 <img src={product.image} alt={product.desc} />
                             </div>

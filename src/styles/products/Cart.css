@@ -119,3 +119,6 @@
 .payment {
     width: 100%;
 }
+.payment span {
+    color: var(--color-primary);
+}

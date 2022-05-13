@@ -1,14 +1,14 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import slide1 from "../../../assets/img/mainImg/slider/slide1.png";
-import slide2 from "../../../assets/img/mainImg/slider/slide2.png";
-import slide3 from "../../../assets/img/mainImg/slider/slide3.png";
-import slide4 from "../../../assets/img/mainImg/slider/slide4.png";
-import slide5 from "../../../assets/img/mainImg/slider/slide5.png";
-import slide6 from "../../../assets/img/mainImg/slider/slide6.png";
-import ads1 from "../../../assets/img/mainImg/ads/ads1.png";
-import ads2 from "../../../assets/img/mainImg/ads/ads2.png";
+import slide1 from "assets/img/slider/slide1.png";
+import slide2 from "assets/img/slider/slide2.png";
+import slide3 from "assets/img/slider/slide3.png";
+import slide4 from "assets/img/slider/slide4.png";
+import slide5 from "assets/img/slider/slide5.png";
+import slide6 from "assets/img/slider/slide6.png";
+import ads1 from "assets/img/ads/ads1.png";
+import ads2 from "assets/img/ads/ads2.png";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";

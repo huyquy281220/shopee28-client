@@ -29,14 +29,11 @@ function Mall() {
         }
     }, [filters]);
 
-    const handleProduct = (e) => {
-        // const parent = e.target.parentElement;
-        const currentId = e.target.getAttribute("item-id");
+    const handleProduct = (currentId) => {
         navigate("/product/details", { state: postList[currentId - 1] });
     };
 
     const handlePageChange = (newPage) => {
-        console.log(newPage);
         setFilters({ ...filters, page: newPage });
     };
     return (
@@ -59,17 +56,14 @@ function Mall() {
                         {postList.map((product) => (
                             <div
                                 className="mall-item"
-                                item-id={product._id}
                                 key={product._id}
-                                onClick={handleProduct}
+                                onClick={() => handleProduct(product._id)}
                             >
-                                <div className="mall-item-image" item-id={product._id}>
-                                    <img src={product.image} alt="" item-id={product._id} />
+                                <div className="mall-item-image">
+                                    <img src={product.image} alt="" />
                                 </div>
-                                <div className="mall-item-desc" item-id={product._id}>
-                                    {product.desc}
-                                </div>
-                                <div className="mall-item-price" item-id={product._id}>
+                                <div className="mall-item-desc">{product.desc}</div>
+                                <div className="mall-item-price">
                                     <span>₫</span>
                                     {numberWithCommas(product.price)}
                                 </div>

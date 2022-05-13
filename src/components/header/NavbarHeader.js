@@ -1,8 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
-import shopeeQR from "../../assets/img/mainImg/QRcode/shopeeQR.png";
-import appleQR from "../../assets/img/mainImg/QRcode/appleQR.png";
-import googleQR from "../../assets/img/mainImg/QRcode/googleQR.png";
-import galleryQR from "../../assets/img/mainImg/QRcode/galleryQR.png";
+import shopeeQR from "assets/img/QRcode/shopeeQR.png";
+import appleQR from "assets/img/QRcode/appleQR.png";
+import googleQR from "assets/img/QRcode/googleQR.png";
+import galleryQR from "assets/img/QRcode/galleryQR.png";
 import { useState, useEffect, useContext, memo } from "react";
 import UserContext from "store/Context";
 import { logout } from "store/Actions";
@@ -93,10 +93,7 @@ function NavbarHeader() {
             </div>
             <div className="navbar__headerRight">
                 <div className="navbar__list">
-                    <Link
-                        to=""
-                        className="navbar__hover notify-header"
-                    >
+                    <Link to="" className="navbar__hover notify-header">
                         <i className="far fa-bell mr-right"></i>
                         Thông báo
                         <div className="notify__hover">
@@ -169,4 +166,4 @@ function NavbarHeader() {
     );
 }
 
-export default memo(NavbarHeader);
+export default NavbarHeader;

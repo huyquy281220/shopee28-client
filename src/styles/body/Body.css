@@ -1,20 +1,15 @@
 .container {
     width: 100%;
-    min-height: 1000px;
-    padding: 30px 100px 20px 100px;
+    min-height: 100vh;
+    margin-top: 120px;
     background-color: rgb(245, 245, 245);
 }
 .banner-wrapper {
     display: flex;
     margin-bottom: 20px;
 }
-/* .swiper {
-    width: 100%;
-    height: 100%;
-} */
 
 .swiper-slide {
-    /* text-align: left; */
     font-size: 18px;
     background: #fff;
 
@@ -162,14 +157,6 @@
     font-size: 1.4rem;
     text-transform: capitalize;
 }
-/* .btn-right {
-    position: absolute;
-    right: 0;
-    top: 31%;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-} */
 
 /* shopee mall  */
 .subMall,
@@ -227,17 +214,30 @@
 .today-item,
 .mall-item {
     position: relative;
-    padding: 5px 5px 0;
+    /* padding: 5px 5px 0; */
     margin-bottom: 10px;
     width: 16.6667%;
     height: 29rem;
+    border-radius: 3px;
     background-color: #fff;
     cursor: pointer;
+}
+.subMall-item img,
+.today-item img,
+.mall-item img {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.sticker-top {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 .mall-item {
     border: 1px solid #ccc;
 }
 .mall-item:hover {
+    border: 1px solid var(--color-primary);
     transform: scale(1.025);
 }
 .item-image img,

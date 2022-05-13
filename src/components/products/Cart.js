@@ -46,7 +46,7 @@ function Cart() {
             if (product._id === id) {
                 product.qtySelected++;
                 handleQty(product.qtySelected, product._id);
-                handleUpdate(user, user.cart);
+                handleUpdate(user._id, user.cart);
                 localStorage.setItem("user", JSON.stringify(user));
             }
         });
@@ -57,11 +57,13 @@ function Cart() {
             if (product._id === id && product.qtySelected > 0) {
                 product.qtySelected--;
                 handleQty(product.qtySelected, product._id);
-                handleUpdate(user, user.cart);
+                handleUpdate(user._id, user.cart);
                 localStorage.setItem("user", JSON.stringify(user));
             }
         });
     };
+
+    const handleChangeQty = () => {};
 
     const totalMoney = newCart.reduce((total, product) => {
         return total + product.price * product.qtySelected;
@@ -124,7 +126,8 @@ function Cart() {
                                             <input
                                                 type="text"
                                                 className="product-quantity"
-                                                defaultValue={product.qtySelected}
+                                                value={product.qtySelected}
+                                                onChange={handleChangeQty}
                                             />
                                             <button
                                                 className="plus"
@@ -149,13 +152,32 @@ function Cart() {
                                 </tr>
                             ))}
                             <tr className="row2"></tr>
-                            <tr>
-                                <td className="td-payment" colSpan={5}>
+                            <tr
+                                className="row3"
+                                style={{
+                                    marginTop: "20px",
+                                }}
+                            >
+                                <td
+                                    className="td-payment"
+                                    style={{ display: "flex", width: "100%" }}
+                                    colSpan={5}
+                                >
                                     <div className="payment">
-                                        Tổng thanh toán (sản phẩm) : {numberWithCommas(totalMoney)}{" "}
-                                        <span>VND</span>
+                                        Tổng thanh toán ({user.cart.length} sản phẩm) :{" "}
+                                        <span>{numberWithCommas(totalMoney)} VND</span>
                                     </div>
-                                    <button>Mua Hàng</button>
+                                    <button
+                                        style={{
+                                            width: "180px",
+                                            height: "35px",
+                                            color: "#fff",
+                                            backgroundColor: "rgb(238, 77, 45)",
+                                            borderRadius: "4px",
+                                        }}
+                                    >
+                                        Mua Hàng
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>

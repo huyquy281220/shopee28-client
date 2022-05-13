@@ -7,8 +7,8 @@ import numberWithCommas from "utils/formatPrice/numberWithCommas";
 import axios from "axios";
 // import axiosJWT from "../../utils/RefreshToken/refreshToken";
 
-const handleUpdate = (user, data) => {
-    axios.put(`${process.env.REACT_APP_API_URL}/user/${user._id}`, { cart: data });
+const handleUpdate = (userId, data) => {
+    axios.put(`${process.env.REACT_APP_API_URL}/user/${userId}`, { cart: data });
 };
 
 function ProductDetail() {
@@ -19,7 +19,6 @@ function ProductDetail() {
     const currentValue = useRef("");
 
     const handleQuantity = (product) => {
-        console.log(product);
         const updateCart = user.cart;
         const updateItemIndex = updateCart.findIndex((item) => item._id === product._id);
 
@@ -33,17 +32,16 @@ function ProductDetail() {
         return updateCart;
     };
 
-    const handleAddToCart = (type = "add") => {
+    const handleAddToCart = () => {
         setAddToCart(true);
         setTimeout(() => {
-            handleBuy(type);
+            handleBuy();
             setAddToCart(false);
         }, 2000);
     };
 
     const handleBuy = (type) => {
         const qtyBuy = currentValue.current.defaultValue;
-        console.log(type);
         if (user) {
             axios
                 .get(`${process.env.REACT_APP_API_URL}/products/${state._id}?qty=${qtyBuy}`)
@@ -53,7 +51,8 @@ function ProductDetail() {
                 .catch((err) => navigate("/error", { error: err }));
 
             localStorage.setItem("user", JSON.stringify(user));
-            handleUpdate(user, user.cart);
+            handleUpdate(user._id, user.cart);
+            console.log(type);
             type !== "add" && navigate("/user/cart", { replace: true });
         } else {
             navigate("/user/login");

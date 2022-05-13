@@ -69,7 +69,7 @@ function TodaySuggestion() {
                                         className="item-image skeleton-box"
                                         style={{ height: "188px" }}
                                     >
-                                        <svg width="55px" height="65px" viewBox="0 0">
+                                        <svg width="55px" height="65px" viewBox="0 0 50 50">
                                             <path
                                                 fill="#cac8ca"
                                                 stroke="none"
