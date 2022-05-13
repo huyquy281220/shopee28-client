@@ -43,7 +43,7 @@ function App() {
                         />
                     </Link>
                     <button className="close-btn" onClick={() => setPopup(false)}>
-                        <svg viewBox="0 0 16 16" stroke="#EE4D2D" class="home-popup__close-button">
+                        <svg viewBox="0 0 16 16" stroke="#000" className="home-popup__close-button">
                             <path stroke-linecap="round" d="M1.1,1.1L15.2,15.2"></path>
                             <path stroke-linecap="round" d="M15,1L0.9,15.1"></path>
                         </svg>

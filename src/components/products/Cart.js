@@ -158,11 +158,7 @@ function Cart() {
                                     marginTop: "20px",
                                 }}
                             >
-                                <td
-                                    className="td-payment"
-                                    style={{ display: "flex", width: "100%" }}
-                                    colSpan={5}
-                                >
+                                <td className="td-payment" colSpan={5}>
                                     <div className="payment">
                                         Tổng thanh toán ({user.cart.length} sản phẩm) :{" "}
                                         <span>{numberWithCommas(totalMoney)} VND</span>

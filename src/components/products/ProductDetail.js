@@ -8,6 +8,7 @@ import axios from "axios";
 // import axiosJWT from "../../utils/RefreshToken/refreshToken";
 
 const handleUpdate = (userId, data) => {
+    console.log(data);
     axios.put(`${process.env.REACT_APP_API_URL}/user/${userId}`, { cart: data });
 };
 
@@ -52,10 +53,9 @@ function ProductDetail() {
 
             localStorage.setItem("user", JSON.stringify(user));
             handleUpdate(user._id, user.cart);
-            console.log(type);
-            type !== "add" && navigate("/user/cart", { replace: true });
+            setTimeout(() => navigate("/user/cart"), 1500);
         } else {
-            navigate("/user/login");
+            setTimeout(() => navigate("/user/login"), 1500);
         }
     };
 

@@ -10,7 +10,6 @@ import cartEmpty from "assets/img/cart/cart empty.jpg";
 function SearchHeader() {
     const { user } = useContext(UserContext);
     const [searchTerm, setSearchTerm] = useState("");
-    const [searchHistory, setSearchHistory] = useState([]);
     const [itemOnSearch, setItemOnSearch] = useState([]);
     const [toggleOn, setToggleOn] = useState(false);
     const navigate = useNavigate();
@@ -103,10 +102,10 @@ function SearchHeader() {
             </div>
             <div className="search__header-cart">
                 <Link to="/user/cart" className="cart-icon">
-                    <div className="items-in-cart">{user.cart.length}</div>
+                    <div className="items-in-cart">{user ? user.cart.length : null}</div>
                     <i className="fas fa-shopping-cart"></i>
                     <div className="notify-cart">
-                        {user.cart.length > 0 ? (
+                        {user?.cart?.length > 0 ? (
                             <>
                                 <div className="notify-title" style={{ fontSize: "1.4rem" }}>
                                     Sản phẩm mới thêm
@@ -150,12 +149,15 @@ function SearchHeader() {
                                         .reverse()
                                         .slice(0, 5)}
                                 </ul>
-                                <Link to="" className="all-notify">
+                                <Link to="/user/cart" className="all-notify">
                                     Xem giỏ hàng
                                 </Link>
                             </>
                         ) : (
-                            <div className="cart-empty">
+                            <div
+                                className="cart-empty"
+                                style={{ textAlign: "center", height: "150px", paddingTop: "15px" }}
+                            >
                                 <img src={cartEmpty} alt="" width="70px" height="80px" />
                                 <p style={{ fontSize: "1.4rem" }}>Giỏ hàng trống</p>
                             </div>

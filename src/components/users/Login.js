@@ -18,9 +18,6 @@ function Login() {
                 password,
             });
             dispatch(loginSuccess(res.data));
-            console.log(
-                navigate(-1) === navigate("/") || navigate(-1) === navigate("/user/register")
-            );
             setTimeout(() => {
                 if (navigate(-1) === navigate("/") || navigate(-1) === navigate("/user/register")) {
                     return navigate("/");

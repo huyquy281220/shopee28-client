@@ -14,12 +14,17 @@ function TodaySuggestion() {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
+        let isSuccess = true;
         axios
             .get(
                 `${process.env.REACT_APP_API_URL}/products?${queryString.stringify(suggestProduct)}`
             )
             .then((res) => setProductToday(res.data))
             .catch((err) => console.error(err));
+
+        return () => {
+            isSuccess = false;
+        };
     }, [suggestProduct]);
 
     const handleProduct = (id) => {
