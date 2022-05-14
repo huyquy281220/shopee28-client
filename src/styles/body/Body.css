@@ -8,7 +8,9 @@
     display: flex;
     margin-bottom: 20px;
 }
-
+.swiper-wrapper {
+    width: auto;
+}
 .swiper-slide {
     font-size: 18px;
     background: #fff;
@@ -160,6 +162,7 @@
 
 /* shopee mall  */
 .subMall,
+.flash-sale,
 .products-today {
     margin-bottom: 20px;
     max-width: 1200px;
@@ -167,10 +170,14 @@
     min-height: 400px;
     background-color: #fff;
 }
+.flash-sale {
+    position: relative;
+}
 .products-today {
     height: auto !important;
 }
 .subMall__header,
+.flash-sale-header,
 .suggest__header {
     padding: 0 20px;
     height: 60px;
@@ -183,6 +190,7 @@
     background-color: rgb(245, 245, 245);
 }
 .subMall__header a,
+.flash-sale-header a,
 .suggest__header a {
     text-decoration: none;
     font-size: 1.7rem;
@@ -200,33 +208,71 @@
     height: 100%;
     min-height: 400px;
 }
+.flash-sale-body {
+    overflow: hidden;
+}
+.flash-sale-items {
+    padding: 15px 5px 0 15px !important;
+    width: auto !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    transition: transform 1s ease;
+    /* transform: translateX(-1215px); */
+}
+
 .subMall-items,
+.flash-sale-items,
 .today-items,
 .mall-items {
     padding: 15px 5px 0;
     width: 100%;
+    max-height: 320px;
     display: flex;
     justify-content: center;
     gap: 46px;
     flex-wrap: wrap;
 }
 .subMall-item,
+.flash-sale-item,
 .today-item,
 .mall-item {
     position: relative;
-    /* padding: 5px 5px 0; */
     margin-bottom: 10px;
     width: 16.6667%;
     height: 29rem;
     border-radius: 3px;
     background-color: #fff;
     cursor: pointer;
+    flex: 1 0 16.6667%;
 }
 .subMall-item img,
 .today-item img,
 .mall-item img {
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
+}
+.sticker-wrapper {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+}
+.sticker-sale {
+    position: relative;
+    width: 50px;
+    height: 44px;
+    text-align: center;
+    background-color: rgba(255, 212, 36, 0.9);
+}
+.sticker-sale:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 0;
+    bottom: -3.5px;
+    border-color: transparent rgba(255, 212, 36, 0.9);
+    border-style: solid;
+    border-width: 0 25px 4px;
 }
 .sticker-top {
     position: absolute;
@@ -280,6 +326,33 @@
 }
 .mall-body {
     margin-top: 20px;
+}
+.sale-btn {
+    position: absolute;
+    top: 50%;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    border: none;
+    border-radius: 50%;
+    background-color: #fff;
+    cursor: pointer;
+    z-index: 20;
+}
+.sale-next:hover {
+    transform: scale(2) translateX(20%);
+}
+.sale-prev:hover {
+    transform: scale(2) translateX(-20%);
+}
+.sale-next {
+    right: 0;
+    transform: translateX(50%);
+}
+.sale-prev {
+    display: none;
+    left: 0;
+    transform: translateX(-50%);
 }
 .btn-light {
     width: 30rem;

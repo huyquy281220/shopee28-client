@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 
 //
@@ -21,20 +21,27 @@ import PrivateRoute from "components/users/PrivateRoute";
 //
 
 function App() {
+    const popupRef = useRef();
     const [popup, setPopup] = useState(true);
 
     useEffect(() => {
-        const handleClosePopup = () => setPopup(false);
-        window.addEventListener("click", handleClosePopup);
+        const handleClosePopup = (e) => {
+            if (e.target.contains(popupRef.current)) {
+                setPopup(false);
+            }
+        };
+        document.body.addEventListener("click", handleClosePopup);
 
-        return window.removeEventListener("click", handleClosePopup);
+        return () => {
+            document.body.removeEventListener("click", handleClosePopup);
+        };
     }, []);
 
     return (
         <div className="App">
             {popup && (
                 <div className="popup">
-                    <Link to="">
+                    <Link to="" ref={popupRef}>
                         <img
                             src="https://cf.shopee.vn/file/8668365043688f109a192604e11a2d3c"
                             alt=""

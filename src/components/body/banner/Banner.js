@@ -55,7 +55,7 @@ function Banner() {
                         className="mySwiper"
                     >
                         <SwiperSlide>
-                            <img src={slide1} />
+                            <img src={slide1} alt="" />
                         </SwiperSlide>
                         <SwiperSlide>
                             <img src={slide2} alt="" />
