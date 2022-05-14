@@ -50,6 +50,7 @@ function FlashSale() {
                 slide.style.transform = "translateX(0)";
                 nextBtn.style.display = "block";
                 prevBtn.style.display = "none";
+                break;
             }
             default:
         }

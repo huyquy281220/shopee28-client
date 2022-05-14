@@ -3,7 +3,7 @@ import shopeeQR from "assets/img/QRcode/shopeeQR.png";
 import appleQR from "assets/img/QRcode/appleQR.png";
 import googleQR from "assets/img/QRcode/googleQR.png";
 import galleryQR from "assets/img/QRcode/galleryQR.png";
-import { useState, useEffect, useContext, memo } from "react";
+import { useState, useEffect, useContext } from "react";
 import UserContext from "store/Context";
 import { logout } from "store/Actions";
 import axios from "axios";
@@ -141,9 +141,7 @@ function NavbarHeader() {
                                 <i className="fas fa-user"></i>
                                 <span className="username">{user.username}</span>
                                 <div className="user__hover">
-                                    <Link to={`user/account/profile/id=${user._id}`}>
-                                        Tài khoản của tôi
-                                    </Link>
+                                    <Link to="/user/account/profile">Tài khoản của tôi</Link>
                                     <Link to="" onClick={handleLogout}>
                                         Đăng xuất
                                     </Link>

@@ -40,7 +40,7 @@ function ProductDetail() {
             handleBuy(type);
             dispatch(updateUser(user));
             setAddToCart(false);
-        }, 2000);
+        }, 1000);
     };
 
     const handleBuy = (type) => {
@@ -59,9 +59,9 @@ function ProductDetail() {
                 handleUpdate(user._id, user.cart);
                 dispatch(updateUser(user));
                 type !== "add" && navigate("/user/cart");
-            }, 1500);
+            }, 500);
         } else {
-            setTimeout(() => navigate("/user/login"), 1500);
+            setTimeout(() => navigate("/user/login"), 500);
         }
     };
 

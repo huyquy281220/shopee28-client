@@ -1,0 +1,30 @@
+.user-profile {
+    width: 100%;
+    height: 100%;
+}
+
+.profile-title {
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+.profile__header span {
+    font-size: 1.5rem;
+    color: #555;
+}
+
+.profile__body {
+    display: flex;
+    margin-top: 30px;
+    padding: 40px 20px 20px;
+    border-top: 1.5px solid #efefef;
+}
+
+.profile__body-left {
+    width: 600px;
+}
+.profile__body-right {
+    width: 280px;
+    height: 230px;
+    border-left: 1.5px solid #efefef;
+}

@@ -44,7 +44,7 @@ function Cart() {
 
     const handlePlus = (id) => {
         newCart.forEach((product) => {
-            if (product._id === id) {
+            if (product._id === id && product.qtySelected <= product.quantity) {
                 product.qtySelected++;
                 handleQty(product.qtySelected, product._id);
                 handleUpdate(user._id, user.cart);
@@ -55,7 +55,7 @@ function Cart() {
 
     const handleMinus = (id) => {
         newCart.forEach((product) => {
-            if (product._id === id && product.qtySelected > 0) {
+            if (product._id === id && product.qtySelected > 1) {
                 product.qtySelected--;
                 handleQty(product.qtySelected, product._id);
                 handleUpdate(user._id, user.cart);
@@ -137,6 +137,7 @@ function Cart() {
                                                 type="text"
                                                 className="product-quantity"
                                                 value={product.qtySelected}
+                                                defaultValue={product.qtySelected}
                                                 onChange={handleChangeQty}
                                             />
                                             <button

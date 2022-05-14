@@ -12,11 +12,12 @@ import Login from "components/users/Login";
 import Admin from "components/admin/Admin";
 //
 import MyAccount from "components/users/MyAccount";
+import Profile from "components/users/Profile";
 import Cart from "components/products/Cart";
 import Mall from "components/body/shopee_mall/Mall";
 import ErrorPage from "utils/error/Error";
 import ProductDetail from "components/products/ProductDetail";
-import PrivateRoute from "components/users/PrivateRoute";
+import PrivateRoute from "utils/privateRoute/PrivateRoute";
 
 //
 
@@ -95,6 +96,18 @@ function App() {
                             </Body>
                             <Footer />
                         </>
+                    }
+                />
+                <Route
+                    path="/user/account/*"
+                    element={
+                        <PrivateRoute>
+                            <Header />
+                            <MyAccount>
+                                <Profile />
+                            </MyAccount>
+                            <Footer />
+                        </PrivateRoute>
                     }
                 />
             </Routes>
