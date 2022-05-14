@@ -74,7 +74,7 @@ function FlashSale() {
                 </Link>
             </div>
             <button className="sale-btn sale-prev" onClick={() => handleSlideChange(-1)}>
-                <i className="fas fa-chevron-left"></i>
+                <i className="fas fa-chevron-left" style={{ fontSize: "14px" }}></i>
             </button>
             <button className="sale-btn sale-next" onClick={() => handleSlideChange(1)}>
                 <i className="fas fa-chevron-right"></i>
