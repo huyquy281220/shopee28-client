@@ -92,7 +92,7 @@ function TodaySuggestion() {
                                     ></div>
                                 </div>
                             ))}
-                    <button className="btn btn-light" onClick={() => handleLimit()}>
+                    <button className="btn btn-light" onClick={handleLimit}>
                         Xem Thêm
                     </button>
                 </div>

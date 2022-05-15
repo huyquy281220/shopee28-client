@@ -116,33 +116,3 @@ function App() {
 }
 
 export default App;
-
-//useEffect
-// cập nhật lại state
-// cập nhật DOM
-// render lại ui
-// gọi cleanup nếu deps thay đổi
-// gọi callback
-
-// useLayoutEffect
-// cập nhật lại state
-// cập nhật DOM
-// gọi cleanup nếu deps thay đổi(sync)
-// gọi callback(sync)
-// render ui
-
-// useRef
-//memo() -> HOC higher order components
-//tránh re-render components k cần thiết
-// useCallBack tạo tham chiếu ngoài components
-// useMemo tránh lặp logic k cần thiết
-// useReducer [state,dispatch] = useReducer(reducer, initial):
-// init state
-// actions
-//reducer
-//dispatch
-
-// context:
-//create context
-//provider
-//consumer

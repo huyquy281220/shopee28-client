@@ -1,6 +1,7 @@
 .container {
     width: 100%;
-    min-height: 100vh;
+    /* min-height: 100vh; */
+    height: 100%;
     margin-top: 120px;
     background-color: rgb(245, 245, 245);
 }
@@ -173,9 +174,7 @@
 .flash-sale {
     position: relative;
 }
-.products-today {
-    height: auto !important;
-}
+
 .subMall__header,
 .flash-sale-header,
 .suggest__header {
@@ -204,10 +203,7 @@
 .subMall__header .fa-chevron-right {
     margin-left: 5px;
 }
-.today-items {
-    height: 100%;
-    min-height: 400px;
-}
+
 .flash-sale-body {
     overflow: hidden;
 }
@@ -219,14 +215,17 @@
     transition: transform 1s ease;
     /* transform: translateX(-1215px); */
 }
-
+.today-items {
+    height: 100%;
+    min-height: 400px;
+}
 .subMall-items,
 .flash-sale-items,
 .today-items,
 .mall-items {
     padding: 15px 5px 0;
     width: 100%;
-    max-height: 320px;
+    /* max-height: 320px; */
     display: flex;
     justify-content: center;
     gap: 46px;
