@@ -44,13 +44,13 @@ function Mall() {
         <div className="mall">
             <div className="mall-wrapper">
                 <div className="mall-sort">
-                    <span>Sắp xếp theo </span>
+                    <span>Sắp xếp theo: </span>
                     <select
                         name=""
                         label="Giá"
                         onChange={(e) => setFilters({ ...filters, type: e.target.value })}
                     >
-                        <option>Giá</option>
+                        <option value="">Giá</option>
                         <option value="1">Thấp đến cao</option>
                         <option value="-1">Cao đến thấp</option>
                     </select>

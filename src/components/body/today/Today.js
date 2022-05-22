@@ -65,7 +65,7 @@ function TodaySuggestion() {
                             </div>
                         </div>
                     ))}
-                    {!isLoading &&
+                    {isLoading &&
                         Array(5)
                             .fill()
                             .map((key) => (

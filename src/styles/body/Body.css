@@ -325,6 +325,22 @@
 .mall-body {
     margin-top: 20px;
 }
+.mall-sort {
+    padding: 0 10px;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+}
+.mall-sort span {
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+.mall-sort select {
+    margin-left: 20px;
+}
+
 .sale-btn {
     position: absolute;
     top: 50%;
