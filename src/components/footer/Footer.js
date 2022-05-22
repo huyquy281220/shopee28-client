@@ -1,4 +1,4 @@
-export default function Footer() {
+function Footer() {
     const footerStyle = {
         backgroundColor: "gray",
         width: "100%",
@@ -7,3 +7,5 @@ export default function Footer() {
 
     return <div style={footerStyle} className="footer"></div>;
 }
+
+export default Footer;

@@ -1,19 +1,7 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import numberWithCommas from "utils/formatPrice/numberWithCommas";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-
-// import Swiper core and required modules
-import SwiperCore, { Pagination, Navigation, Autoplay } from "swiper";
-
-// install Swiper modules
-SwiperCore.use([Navigation, Pagination]);
 
 function FlashSale() {
     const [products, setProducts] = useState([]);
@@ -69,10 +57,6 @@ function FlashSale() {
                     width="114px"
                     height="30px"
                 />
-                <Link to="">
-                    Xem tất cả
-                    <i className="fas fa-chevron-right"></i>
-                </Link>
             </div>
             <button className="sale-btn sale-prev" onClick={() => handleSlideChange(-1)}>
                 <i

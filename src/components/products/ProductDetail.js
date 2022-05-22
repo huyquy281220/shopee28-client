@@ -34,13 +34,19 @@ function ProductDetail() {
     };
 
     const handleAddToCart = () => {
-        const type = "add";
-        setAddToCart(true);
-        setTimeout(() => {
-            handleBuy(type);
-            dispatch(updateUser(user));
-            setAddToCart(false);
-        }, 1000);
+        if (user) {
+            const type = "add";
+            setAddToCart(true);
+            setTimeout(() => {
+                handleBuy(type);
+                dispatch(updateUser(user));
+                setAddToCart(false);
+            }, 1000);
+        } else {
+            setTimeout(() => {
+                navigate("/user/login");
+            }, 500);
+        }
     };
 
     const handleBuy = (type) => {

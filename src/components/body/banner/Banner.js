@@ -42,7 +42,7 @@ function Banner() {
     return (
         <div className="banner__body">
             <div className="banner-wrapper">
-                <div className="banner">
+                <div className="banner ">
                     <Swiper
                         slidesPerView={1}
                         spaceBetween={30}
@@ -75,10 +75,10 @@ function Banner() {
                     </Swiper>
                 </div>
                 <div className="banner-ads">
-                    <div className="ads1">
+                    <div className="ads1 ">
                         <img src={ads1} alt="" className="ads" />
                     </div>
-                    <div className="ads2">
+                    <div className="ads2 ">
                         <img src={ads2} alt="" className="ads" />
                     </div>
                 </div>

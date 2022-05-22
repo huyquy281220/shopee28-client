@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import queryString from "query-string";
@@ -33,9 +33,13 @@ function Mall() {
         navigate("/product/details", { state: postList[currentId - 1] });
     };
 
-    const handlePageChange = (newPage) => {
-        setFilters({ ...filters, page: newPage });
-    };
+    const handlePageChange = useCallback(
+        (newPage) => {
+            setFilters({ ...filters, page: newPage });
+        },
+        [filters]
+    );
+
     return (
         <div className="mall">
             <div className="mall-wrapper">

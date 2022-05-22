@@ -1,6 +1,8 @@
-function Pagination(props) {
+import { memo } from "react";
+
+function Pagination({ onPageChange, filters }) {
+    console.log("re-render-mall");
     let items = [];
-    const { onPageChange, filters } = props;
     const maxPage = Math.ceil(50 / filters.limit);
 
     for (let number = 1; number <= maxPage; number++) {
@@ -9,6 +11,7 @@ function Pagination(props) {
 
     // style
     const paginationStyle = {
+        marginTop: "10px",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -18,6 +21,7 @@ function Pagination(props) {
     };
 
     const itemStyle = {
+        margin: "0 10px",
         width: "30px",
         height: "30px",
         lineHeight: "30px",
@@ -63,4 +67,4 @@ function Pagination(props) {
     );
 }
 
-export default Pagination;
+export default memo(Pagination);

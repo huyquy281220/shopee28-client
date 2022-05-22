@@ -1,5 +1,5 @@
 import "styles/products/Cart.css";
-import { useState, useContext } from "react";
+import { useState, useContext, useMemo } from "react";
 import UserContext from "store/Context";
 import { updateUser } from "store/Actions";
 import { handleUpdate } from "components/products/ProductDetail";
@@ -62,6 +62,7 @@ function Cart() {
                 handleUpdate(user._id, user.cart);
                 localStorage.setItem("user", JSON.stringify(user));
             }
+            dispatch(updateUser(user));
         });
     };
 

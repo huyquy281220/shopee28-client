@@ -225,7 +225,6 @@
 .mall-items {
     padding: 15px 5px 0;
     width: 100%;
-    /* max-height: 320px; */
     display: flex;
     justify-content: center;
     gap: 46px;
@@ -304,7 +303,7 @@
 }
 .item-price,
 .mall-item-price {
-    padding: 0 5px;
+    margin: 0 5px;
     display: flex;
     align-items: center;
     font-size: 1.8rem;
@@ -375,6 +374,7 @@
     justify-content: center;
     align-items: center;
     background-color: #dddbdd;
+    background-image: url();
 }
 .skeleton-box:after {
     content: "";
