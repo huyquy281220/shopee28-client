@@ -292,7 +292,7 @@
 .item-desc,
 .mall-item-desc {
     position: relative;
-    margin: 10px 5px 20px 5px;
+    margin: 10px;
     font-size: 1.2rem;
     line-height: 1.4rem;
     display: -webkit-box;
@@ -303,14 +303,18 @@
 }
 .item-price,
 .mall-item-price {
-    margin: 0 5px;
+    /* padding: 0 13px; */
+    margin: 20px 10px 0;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     font-size: 1.8rem;
     color: var(--color-primary);
 }
 .item-price span,
 .mall-item-price span {
+    display: inline-block;
+    margin-right: 2px;
     font-size: 1rem;
 }
 
@@ -351,7 +355,7 @@
     border-radius: 50%;
     background-color: #fff;
     cursor: pointer;
-    z-index: 20;
+    z-index: 8;
 }
 .sale-next:hover {
     transform: scale(2) translateX(20%);
@@ -389,8 +393,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #dddbdd;
-    background-image: url();
+    background-color: #f1ecf1;
 }
 .skeleton-box:after {
     content: "";

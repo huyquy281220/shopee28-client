@@ -2,7 +2,7 @@ import "styles/products/Cart.css";
 import { useState, useContext, useMemo } from "react";
 import UserContext from "store/Context";
 import { updateUser } from "store/Actions";
-import { handleUpdate } from "components/products/ProductDetail";
+import { handleUpdate } from "components/productDetail/ProductDetail";
 import numberWithCommas from "utils/formatPrice/numberWithCommas";
 
 function Cart() {
@@ -68,8 +68,9 @@ function Cart() {
 
     const handleDelete = (id) => {
         const indexDelete = user.cart.findIndex((item) => item._id === id);
-        user.cart.splice(indexDelete, 1);
-
+        const newCart =  user.cart.splice(indexDelete, 1);
+        const newUser = 
+        
         dispatch(updateUser(user));
         localStorage.setItem("user", JSON.stringify(user));
         handleUpdate(user._id, user.cart);

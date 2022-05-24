@@ -1,4 +1,4 @@
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import queryString from "query-string";
@@ -8,7 +8,6 @@ function TodaySuggestion() {
     const navigate = useNavigate();
     const [suggestProduct, setSuggestProduct] = useState({
         limit: 5,
-        skip: 0,
     });
     const [productToday, setProductToday] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -36,7 +35,6 @@ function TodaySuggestion() {
         setTimeout(() => {
             setSuggestProduct({
                 limit: suggestProduct.limit + 5,
-                skip: suggestProduct.skip + 5,
             });
             setIsLoading(false);
         }, 2000);
@@ -60,16 +58,18 @@ function TodaySuggestion() {
                             </div>
                             <div className="item-desc">{product.desc}</div>
                             <div className="item-price">
-                                <span>₫</span>
-                                {numberWithCommas(product.price)}
+                                <div style={{ display: "flex", alignItems: "center" }}>
+                                    <span>₫ </span> {numberWithCommas(product.price)}
+                                </div>
+                                <span style={{ color: "rgba(0, 0, 0, 0.54)" }}>Đã bán 12,5k</span>
                             </div>
                         </div>
                     ))}
                     {isLoading &&
                         Array(5)
                             .fill()
-                            .map((key) => (
-                                <div className="today-item" key={key}>
+                            .map((item, index) => (
+                                <div className="today-item" key={index}>
                                     <div
                                         className="item-image skeleton-box"
                                         style={{ height: "188px" }}
@@ -101,4 +101,4 @@ function TodaySuggestion() {
     );
 }
 
-export default memo(TodaySuggestion);
+export default TodaySuggestion;

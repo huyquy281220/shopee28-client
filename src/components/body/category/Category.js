@@ -7,7 +7,7 @@ function Category() {
     useEffect(() => {
         let isSuccess = true;
         axios
-            .get(`${process.env.REACT_APP_API_URL}/category`)
+            .get(`${process.env.REACT_APP_API_URL}/category?limit=20`)
             .then((res) => {
                 if (isSuccess) {
                     setCategories(res.data);

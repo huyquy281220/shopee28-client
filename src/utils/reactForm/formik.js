@@ -26,7 +26,6 @@ function FormValidate(props) {
             .matches(lowercaseRegex, "Ít nhất một kí tự thường")
             .matches(numericRegex, "Ít nhất một chữ số")
             .matches(specialRegex, "Ít nhất một kí tự đặc biệt"),
-        // passwordConfirm: Yup.string().oneOf([Yup.ref("password"), null], "Passwords must match"),
         email:
             type === "register"
                 ? Yup.string()

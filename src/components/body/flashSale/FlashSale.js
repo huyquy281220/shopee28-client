@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import numberWithCommas from "utils/formatPrice/numberWithCommas";
@@ -23,11 +23,11 @@ function FlashSale() {
         };
     }, []);
 
-    const handleSlideChange = (direction) => {
+    const handleSlideChange = (number) => {
         const slide = document.querySelector(".flash-sale-items");
         const nextBtn = document.querySelector(".sale-next");
         const prevBtn = document.querySelector(".sale-prev");
-        switch (direction) {
+        switch (number) {
             case 1: {
                 slide.style.transform = "translateX(-1215px)";
                 nextBtn.style.display = "none";
@@ -51,12 +51,14 @@ function FlashSale() {
     return (
         <div className="flash-sale">
             <div className="flash-sale-header">
-                <img
-                    src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/flashsale/fb1088de81e42c4e538967ec12cb5caa.png"
-                    alt=""
-                    width="114px"
-                    height="30px"
-                />
+                <Link to="">
+                    <img
+                        src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/flashsale/fb1088de81e42c4e538967ec12cb5caa.png"
+                        alt=""
+                        width="114px"
+                        height="30px"
+                    />
+                </Link>
             </div>
             <button className="sale-btn sale-prev" onClick={() => handleSlideChange(-1)}>
                 <i
@@ -97,9 +99,45 @@ function FlashSale() {
                                 <img src={product.image} alt={product.desc} />
                             </div>
                             <div className="item-desc">{product.desc}</div>
-                            <div className="item-price">
-                                <span>₫</span>
-                                {numberWithCommas(product.price)}
+                            <div
+                                className="price-sale"
+                                style={{
+                                    color: "#ee4d2d",
+                                    fontSize: "2.2rem",
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                }}
+                            >
+                                <div>
+                                    <span
+                                        style={{
+                                            fontSize: "1.2rem",
+                                            display: "inline-block",
+                                            paddingRight: "3px",
+                                        }}
+                                    >
+                                        ₫
+                                    </span>
+                                    {numberWithCommas(product.price)}
+                                </div>
+                                <span
+                                    style={{
+                                        display: "inline-block",
+                                        width: "156px",
+                                        height: "15px",
+                                        lineHeight: "15px",
+                                        borderRadius: "10px",
+                                        fontSize: "1.2rem",
+                                        textAlign: "center",
+                                        color: "#fff",
+                                        backgroundColor: "rgb(255 189 166)",
+                                        textTransform: "uppercase",
+                                    }}
+                                >
+                                    Đã bán 12,5k
+                                </span>
                             </div>
                         </div>
                     ))}

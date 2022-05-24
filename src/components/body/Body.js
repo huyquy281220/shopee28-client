@@ -1,4 +1,4 @@
-import "../../styles/body/Body.css";
+import "styles/body/Body.css";
 
 function Body({ children }) {
     return <div className="container">{children}</div>;

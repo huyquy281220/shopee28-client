@@ -13,10 +13,10 @@ import Admin from "components/admin/Admin";
 //
 import MyAccount from "components/users/MyAccount";
 import Profile from "components/users/Profile";
-import Cart from "components/products/Cart";
-import Mall from "components/body/shopee_mall/Mall";
+import Cart from "components/cart/Cart";
+import Mall from "components/body/shopeeMall/Mall";
 import ErrorPage from "utils/error/Error";
-import ProductDetail from "components/products/ProductDetail";
+import ProductDetail from "components/productDetail/ProductDetail";
 import PrivateRoute from "utils/privateRoute/PrivateRoute";
 
 //

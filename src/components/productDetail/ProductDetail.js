@@ -6,7 +6,7 @@ import { updateUser } from "store/Actions";
 import { useLocation, useNavigate } from "react-router-dom";
 import numberWithCommas from "utils/formatPrice/numberWithCommas";
 import axios from "axios";
-// import axiosJWT from "../../utils/RefreshToken/refreshToken";
+// import axiosJWT from "utils/RefreshToken/refreshToken";
 
 const handleUpdate = (userId, data) => {
     axios.put(`${process.env.REACT_APP_API_URL}/user/${userId}`, { cart: data });
@@ -41,33 +41,33 @@ function ProductDetail() {
                 handleBuy(type);
                 dispatch(updateUser(user));
                 setAddToCart(false);
-            }, 1000);
+            }, 500);
         } else {
             setTimeout(() => {
                 navigate("/user/login");
-            }, 500);
+            }, 1000);
         }
     };
 
     const handleBuy = (type) => {
-        console.log(type);
         const qtyBuy = currentValue.current.defaultValue;
         if (user) {
             axios
                 .get(`${process.env.REACT_APP_API_URL}/products/${state._id}?qty=${qtyBuy}`)
                 .then((res) => {
+                    const newUser = { ...user, cart: [...user.cart, res.data] };
                     handleQuantity(res.data);
+                    dispatch(updateUser(newUser));
                 })
                 .catch((err) => navigate("/error", { error: err }));
 
             setTimeout(() => {
                 localStorage.setItem("user", JSON.stringify(user));
                 handleUpdate(user._id, user.cart);
-                dispatch(updateUser(user));
                 type !== "add" && navigate("/user/cart");
-            }, 500);
+            }, 1000);
         } else {
-            setTimeout(() => navigate("/user/login"), 500);
+            setTimeout(() => navigate("/user/login"), 1000);
         }
     };
 
