@@ -40,7 +40,7 @@ function App() {
 
     return (
         <div className="App">
-            {popup && (
+            {popup && window.location.pathname === "/" && (
                 <div className="popup">
                     <Link to="" ref={popupRef}>
                         <img

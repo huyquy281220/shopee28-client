@@ -68,8 +68,13 @@ function Mall() {
                                 </div>
                                 <div className="mall-item-desc">{product.desc}</div>
                                 <div className="mall-item-price">
-                                    <span>₫</span>
-                                    {numberWithCommas(product.price)}
+                                    <div style={{ display: "flex", alignItems: "center" }}>
+                                        <span>₫</span>
+                                        {numberWithCommas(product.price)}
+                                    </div>
+                                    <span style={{ color: "rgba(0, 0, 0, 0.54)" }}>
+                                        Đã bán 12,5k
+                                    </span>
                                 </div>
                             </div>
                         ))}

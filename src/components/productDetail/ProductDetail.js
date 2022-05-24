@@ -14,23 +14,25 @@ const handleUpdate = (userId, data) => {
 
 function ProductDetail() {
     const { state } = useLocation();
+    const [currentProduct, setCurrentProduct] = useState(state);
     const navigate = useNavigate();
     const { user, dispatch } = useContext(UserContext);
     const [addToCart, setAddToCart] = useState(false);
     const currentValue = useRef("");
 
     const handleQuantity = (product) => {
-        const updateCart = user.cart;
-        const updateItemIndex = updateCart.findIndex((item) => item._id === product._id);
-
+        const currentCart = user.cart;
+        const updateItemIndex = currentCart.findIndex((item) => item._id === product._id);
+        console.log(updateItemIndex);
         if (updateItemIndex < 0) {
-            updateCart.push(product);
+            currentCart.push(product);
         } else {
-            const updateItem = { ...updateCart[updateItemIndex] };
-            updateItem.qtySelected++;
-            updateCart[updateItemIndex] = updateItem;
+            const updateItem = { ...currentCart[updateItemIndex] };
+
+            updateItem.qtySelected = Number(updateItem.qtySelected) + Number(product.qtySelected);
+            currentCart[updateItemIndex] = updateItem;
         }
-        return updateCart;
+        return currentCart;
     };
 
     const handleAddToCart = () => {
@@ -39,7 +41,6 @@ function ProductDetail() {
             setAddToCart(true);
             setTimeout(() => {
                 handleBuy(type);
-                dispatch(updateUser(user));
                 setAddToCart(false);
             }, 500);
         } else {
@@ -55,8 +56,7 @@ function ProductDetail() {
             axios
                 .get(`${process.env.REACT_APP_API_URL}/products/${state._id}?qty=${qtyBuy}`)
                 .then((res) => {
-                    const newUser = { ...user, cart: [...user.cart, res.data] };
-                    handleQuantity(res.data);
+                    const newUser = { ...user, cart: handleQuantity(res.data) };
                     dispatch(updateUser(newUser));
                 })
                 .catch((err) => navigate("/error", { error: err }));
@@ -71,7 +71,28 @@ function ProductDetail() {
         }
     };
 
-    const handleChangeValue = () => {};
+    const handleChangeValue = (type) => {
+        switch (type) {
+            case "plus":
+                if (currentProduct.qtySelected < currentProduct.quantity) {
+                    setCurrentProduct({
+                        ...currentProduct,
+                        qtySelected: currentProduct.qtySelected + 1,
+                    });
+                }
+                console.log(currentProduct);
+                return currentProduct;
+            case "minus":
+                currentProduct.qtySelected > 1 &&
+                    setCurrentProduct({
+                        ...currentProduct,
+                        qtySelected: currentProduct.qtySelected - 1,
+                    });
+
+                break;
+            default:
+        }
+    };
 
     return (
         <div className="productDetail-wrapper">
@@ -88,7 +109,7 @@ function ProductDetail() {
                 <div className="productDetail">
                     <div className="productDetail-left">
                         <div className="product-img">
-                            <img src={state.image} alt="" />
+                            <img src={currentProduct.image} alt="" />
                         </div>
                         <div className="social-media">
                             <span>Chia sẻ: </span>
@@ -107,10 +128,10 @@ function ProductDetail() {
                         </div>
                     </div>
                     <div className="productDetail-right">
-                        <div className="product-desc">{state.desc}</div>
+                        <div className="product-desc">{currentProduct.desc}</div>
                         <div className="product-price">
                             <span className="currency-unit">₫</span>
-                            {numberWithCommas(state.price)}
+                            {numberWithCommas(currentProduct.price)}
                         </div>
                         <div className="transport">
                             <div className="transport-left">Vận chuyển</div>
@@ -133,21 +154,25 @@ function ProductDetail() {
                         <div className="product-qty">
                             <div className="product-qty-left">Số lượng</div>
                             <div className="product-qty-right">
-                                <button className="minus">
+                                <button
+                                    className="minus"
+                                    onClick={() => handleChangeValue("minus")}
+                                >
                                     <i className="fas fa-minus"></i>
                                 </button>
                                 <input
                                     type="text"
                                     ref={currentValue}
-                                    value="1"
+                                    value={currentProduct.qtySelected}
+                                    // defaultValue={state.qtySelected}
                                     onChange={handleChangeValue}
                                     className="product-quantity"
                                 />
-                                <button className="plus">
+                                <button className="plus" onClick={() => handleChangeValue("plus")}>
                                     <i className="fas fa-plus"></i>
                                 </button>
                                 <div className="product-available" style={{ color: "#757575" }}>
-                                    {state.quantity} sản phẩm có sẵn
+                                    {currentProduct.quantity} sản phẩm có sẵn
                                 </div>
                             </div>
                         </div>

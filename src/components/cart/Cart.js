@@ -7,10 +7,9 @@ import numberWithCommas from "utils/formatPrice/numberWithCommas";
 
 function Cart() {
     const { user, dispatch } = useContext(UserContext);
-    const newCart = user.cart;
-    // const [popupBuy,setPopupBuy] = useState(false)
+
     const [newQty, setNewQty] = useState(
-        newCart.map((product) => ({
+        user.cart.map((product) => ({
             qty: product.qtySelected,
             id: product._id,
         }))
@@ -27,7 +26,7 @@ function Cart() {
         const checkboxAll = document.querySelector(".checkAll");
         const checkbox = document.querySelectorAll(".productCart-check:checked");
 
-        if (checkbox.length === newCart.length) {
+        if (checkbox.length === user.cart.length) {
             checkboxAll.checked = true;
         } else {
             checkboxAll.checked = false;
@@ -44,7 +43,7 @@ function Cart() {
     };
 
     const handlePlus = (id) => {
-        newCart.forEach((product) => {
+        user.cart.forEach((product) => {
             if (product._id === id && product.qtySelected <= product.quantity) {
                 product.qtySelected++;
                 handleQty(product.qtySelected, product._id);
@@ -55,7 +54,7 @@ function Cart() {
     };
 
     const handleMinus = (id) => {
-        newCart.forEach((product) => {
+        user.cart.forEach((product) => {
             if (product._id === id && product.qtySelected > 1) {
                 product.qtySelected--;
                 handleQty(product.qtySelected, product._id);
@@ -68,25 +67,16 @@ function Cart() {
 
     const handleDelete = (id) => {
         const indexDelete = user.cart.findIndex((item) => item._id === id);
-        const newCart =  user.cart.splice(indexDelete, 1);
-        const newUser = 
-        
+        user.cart.splice(indexDelete, 1);
+
         dispatch(updateUser(user));
         localStorage.setItem("user", JSON.stringify(user));
         handleUpdate(user._id, user.cart);
     };
 
-    const handleBuyProducts = () => {
-        // setPopupBuy(true);
-        // setTimeout(() => {
-        //     setPopupBuy(false);
-        //     handleDelete();
-        // }, 1000);
-    };
-
     const handleChangeQty = () => {};
 
-    const totalMoney = newCart.reduce((total, product) => {
+    const totalMoney = user.cart.reduce((total, product) => {
         return total + product.price * product.qtySelected;
     }, 0);
 
@@ -111,7 +101,7 @@ function Cart() {
                                 <th>Thao tác</th>
                             </tr>
                             <tr className="row2"></tr>
-                            {newCart.map((product) => (
+                            {user.cart.map((product) => (
                                 <tr className="row3" key={product._id}>
                                     <td className="row3-td">
                                         <div className="check">
@@ -199,7 +189,6 @@ function Cart() {
                                             borderRadius: "4px",
                                             cursor: "pointer",
                                         }}
-                                        onClick={() => handleBuyProducts}
                                     >
                                         Mua Hàng
                                     </button>

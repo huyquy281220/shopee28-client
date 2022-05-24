@@ -4,7 +4,7 @@ import { useContext } from "react";
 import "styles/users/Profile.css";
 
 export default function Profile() {
-    const { user, dispatch } = useContext(UserContext);
+    const { user } = useContext(UserContext);
 
     return (
         <div className="user-profile">
@@ -23,7 +23,7 @@ export default function Profile() {
                 </div>
                 <div className="profile__body-right">
                     <div className="user-image">
-                        <input type="file" style={{ display: "" }} accept=".jpg,.jpeg,.png" />
+                        <input type="file" style={{ display: "none" }} accept=".jpg,.jpeg,.png" />
                         <button>Chọn ảnh</button>
                     </div>
                 </div>
