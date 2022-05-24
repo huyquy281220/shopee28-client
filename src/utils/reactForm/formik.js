@@ -1,9 +1,14 @@
 import { Link } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import { useState } from "react";
 import axios from "axios";
 import * as Yup from "yup";
 
+import "styles/form/input.css";
+
 function FormValidate(props) {
+    const [showPass, setShowPass] = useState(false);
+
     const { handleFormSubmit, type } = props;
     const uppercaseRegex = /(?=.*[A-Z])/;
     const lowercaseRegex = /(?=.*[a-z])/;
@@ -22,7 +27,7 @@ function FormValidate(props) {
             .min(8, "Tối thiểu 8 kí tự")
             .max(32, "Tối đa 32 kí tự")
             .required("Vui lòng nhập mật khẩu")
-            .matches(specialRegex, "Ít nhất một kí tự đặc biệt")
+            .matches(/(?=.*[*.!@$%^&(){}:;<>,.?~_+-=|])/, "Ít nhất một kí tự đặc biệt")
             .matches(uppercaseRegex, "Ít nhất một kí tự hoa")
             .matches(lowercaseRegex, "Ít nhất một kí tự thường")
             .matches(numericRegex, "Ít nhất một chữ số"),
@@ -73,12 +78,20 @@ function FormValidate(props) {
                     <Field id="email" name="email" placeholder="Email"></Field>
                     <ErrorMessage name="email" component="div" className="err-mes" />
 
-                    <Field
-                        id="password"
-                        type="password"
-                        name="password"
-                        placeholder="Mật khẩu"
-                    ></Field>
+                    <div className="showPass">
+                        <Field
+                            id="password"
+                            type={showPass ? "text" : "password"}
+                            name="password"
+                            placeholder="Mật khẩu"
+                            className="input-password"
+                            // as={CustomInput}
+                        ></Field>
+
+                        <div className="showIcon" onClick={() => setShowPass(!showPass)}>
+                            <i className={showPass ? "fas fa-eye" : "fas fa-eye-slash"}></i>
+                        </div>
+                    </div>
                     <ErrorMessage name="password" component="div" className="err-mes" />
 
                     <button className="form-btn" type="submit">

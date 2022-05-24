@@ -1,0 +1,11 @@
+.showPass {
+    position: relative;
+}
+.showIcon {
+    position: absolute;
+    top: 23%;
+    right: 15px;
+    transform: translateY(-25%);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
