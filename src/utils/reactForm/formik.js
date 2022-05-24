@@ -22,10 +22,10 @@ function FormValidate(props) {
             .min(8, "Tối thiểu 8 kí tự")
             .max(32, "Tối đa 32 kí tự")
             .required("Vui lòng nhập mật khẩu")
+            .matches(specialRegex, "Ít nhất một kí tự đặc biệt")
             .matches(uppercaseRegex, "Ít nhất một kí tự hoa")
             .matches(lowercaseRegex, "Ít nhất một kí tự thường")
-            .matches(numericRegex, "Ít nhất một chữ số")
-            .matches(specialRegex, "Ít nhất một kí tự đặc biệt"),
+            .matches(numericRegex, "Ít nhất một chữ số"),
         email:
             type === "register"
                 ? Yup.string()
@@ -65,13 +65,20 @@ function FormValidate(props) {
             {({ handleSubmit }) => (
                 <Form onSubmit={handleSubmit}>
                     <div className="title-form">{type === "login" ? "Đăng nhập" : "Đăng ký"}</div>
-                    {type === "register" && <Field id="userName" name="userName"></Field>}
+                    {type === "register" && (
+                        <Field id="userName" name="userName" placeholder="Tên đăng nhập"></Field>
+                    )}
                     <ErrorMessage name="userName" component="div" className="err-mes" />
 
-                    <Field id="email" name="email"></Field>
+                    <Field id="email" name="email" placeholder="Email"></Field>
                     <ErrorMessage name="email" component="div" className="err-mes" />
 
-                    <Field id="password" type="password" name="password"></Field>
+                    <Field
+                        id="password"
+                        type="password"
+                        name="password"
+                        placeholder="Mật khẩu"
+                    ></Field>
                     <ErrorMessage name="password" component="div" className="err-mes" />
 
                     <button className="form-btn" type="submit">
